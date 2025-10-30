@@ -1,0 +1,38 @@
+# Full list of dependencies used across the KVE project
+# These packages support API services, batch processing, audio analysis,
+# real‑time monitoring, cloud storage and optional desktop GUIs.  Install
+# only what you need for your deployment environment.
+
+# API & web frameworks
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0
+
+# Audio processing
+librosa>=0.10
+soundfile>=0.12
+numpy>=1.23
+pyloudnorm>=0.1
+
+# Machine learning & inference
+onnxruntime>=1.14
+torch>=2.0
+
+# File watching & HTTP requests
+watchdog>=3.0
+requests>=2.31
+
+# Cloud storage (optional)
+boto3>=1.28  # for AWS S3 interactions
+google-cloud-storage>=2.10  # for Google Cloud Storage
+
+# Real‑time streaming (optional)
+sounddevice>=0.4  # for low‑latency ASIO audio streaming
+websockets>=11.0
+
+# Desktop GUI (optional)
+PySide6>=6.5
+
+# Test & Lint (development)
+pytest>=7.4
+black>=23.3

@@ -1,0 +1,119 @@
+/**
+ * JESUS CARTEL - STANDALONE MUSIC PUBLISHING PLATFORM
+ *
+ * Extracted from Valifi Kingdom for independent deployment on Lightning AI
+ *
+ * Features:
+ * - Music publishing automation (Song → NFT → Token)
+ * - Multi-chain NFT deployment (Ethereum, Polygon, BSC, Arbitrum, Optimism)
+ * - ERC-20 token creation for songs
+ * - Release management and streaming analytics
+ * - Event management
+ */
+
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import path from "path";
+import { jesusCartelService } from "./services/jesusCartelService";
+import { setupRoutes } from "./routes";
+import { setupEnhancedRoutes } from "./routes-enhanced";
+import { db } from "./database/db";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Serve admin UI and public UI
+app.use('/admin', express.static(path.join(__dirname, '../../shared')));
+app.use(express.static(path.join(__dirname, '../../shared')));
+
+// Serve audio and image files
+app.use('/audio', express.static(path.join(__dirname, '../../shared/audio')));
+app.use('/images', express.static(path.join(__dirname, '../../shared/images')));
+
+// API info endpoint
+app.get("/api", (req, res) => {
+  res.json({
+    service: "Jesus Cartel Publishing Platform",
+    version: "1.0.0",
+    description: "Standalone Music Publishing Automation Platform for Lightning AI",
+    features: [
+      "Music publishing automation (Song → NFT → Token)",
+      "Multi-chain NFT deployment (Ethereum, Polygon, BSC, Arbitrum, Optimism)",
+      "ERC-20 token creation for songs",
+      "Release management and streaming analytics",
+      "Event management"
+    ],
+    endpoints: {
+      adminUI: "GET /admin/admin.html",
+      health: "GET /health",
+      releases: {
+        latest: "GET /api/releases/latest",
+        featured: "GET /api/releases/featured",
+        byId: "GET /api/releases/:id",
+        stream: "POST /api/releases/:id/stream",
+        like: "POST /api/releases/:id/like"
+      },
+      events: {
+        upcoming: "GET /api/events/upcoming",
+        featured: "GET /api/events/featured",
+        byId: "GET /api/events/:id"
+      },
+      publishing: {
+        publishSong: "POST /api/publish/song"
+      },
+      wallet: {
+        create: "POST /api/wallet/create",
+        importMnemonic: "POST /api/wallet/import/mnemonic",
+        importPrivateKey: "POST /api/wallet/import/privatekey",
+        balance: "GET /api/wallet/:address/balance"
+      },
+      transactions: {
+        send: "POST /api/transaction/send",
+        getTransaction: "GET /api/transaction/:hash"
+      },
+      networks: "GET /api/networks"
+    },
+    supportedNetworks: ["ethereum", "polygon", "bsc", "arbitrum", "optimism"],
+    status: "running",
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Health check
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    service: "jesus-cartel",
+    version: "1.0.0",
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Setup API routes
+setupRoutes(app);
+setupEnhancedRoutes(app);
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`
+╔══════════════════════════════════════════════════════════╗
+║                                                          ║
+║              JESUS CARTEL PUBLISHING PLATFORM             ║
+║              Standalone Edition - Lightning AI            ║
+║                                                          ║
+║  Service: Music Publishing Automation                    ║
+║  Port: ${PORT}                                              ║
+║  Status: RUNNING                                         ║
+║                                                          ║
+╚══════════════════════════════════════════════════════════╝
+  `);
+});
+
+export { app, jesusCartelService };

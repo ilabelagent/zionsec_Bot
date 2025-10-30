@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audiobot"
+version = "0.1.0"
+description = "Modular audio bot with memory, skills, and web UI"
+authors = [{name = "JesusCartel"}]
+readme = "README-AudioToolkit.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+audiobot = "audiobot.cli:main"
+
+[tool.setuptools]
+packages = ["audiobot", "audiobot.skills"]
+include-package-data = true
+

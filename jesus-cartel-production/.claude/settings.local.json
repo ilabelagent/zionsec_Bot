@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(node -e:*)",
+      "Bash(npm run db:push:*)",
+      "Bash(lsof:*)",
+      "Bash(netstat:*)",
+      "Bash(ss -tlnp:*)",
+      "Bash(kill:*)",
+      "Bash(echo:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npm install:*)",
+      "Bash(awk:*)",
+      "Read(//teamspace/studios/this_studio/**)",
+      "Read(//teamspace/studios/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

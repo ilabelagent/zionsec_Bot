@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publishing Dashboard - Jesus Cartel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .nav-breadcrumb {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            color: #666;
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-help {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            background: white;
+            padding: 0 10px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid var(--danger);
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid var(--warning);
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .network-option {
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .network-option:hover {
+            border-color: var(--primary);
+        }
+
+        .network-option.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .result-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .result-value {
+            color: var(--dark);
+            font-weight: bold;
+            word-break: break-all;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .progress-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .progress-steps::before {
+                display: none;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Publishing Dashboard</h1>
+            <p style="color: #666; margin-top: 10px;">Transform your music into blockchain assets</p>
+            <div class="nav-breadcrumb">
+                <a href="/admin/index.html">Home</a>
+                <span>/</span>
+                <span>Publish</span>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-label">Song Details</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-label">Blockchain Options</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-label">Review & Publish</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <div class="step-label">Complete</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Song Details -->
+        <div class="card" id="form-step1">
+            <h2 class="card-title">📝 Song Information</h2>
+
+            <div class="form-group">
+                <label class="form-label">Song ID *</label>
+                <input type="text" class="form-input" id="songId" placeholder="e.g., song-123" required>
+                <div class="form-help">Unique identifier for your song</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Song Title *</label>
+                <input type="text" class="form-input" id="songTitle" placeholder="Enter song title" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Artist Name *</label>
+                <input type="text" class="form-input" id="artistName" placeholder="Enter artist name" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-textarea" id="description" placeholder="Tell us about your song..."></textarea>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="nextStep(2)">Next: Blockchain Options →</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Blockchain Options -->
+        <div class="card hidden" id="form-step2">
+            <h2 class="card-title">⛓ Blockchain Configuration</h2>
+
+            <div class="form-group">
+                <label class="form-label">Select Network *</label>
+                <div class="network-grid" id="networkGrid">
+                    <div class="network-option" data-network="ethereum" onclick="selectNetwork('ethereum')">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🔷</div>
+                        <div style="font-weight: bold;">Ethereum</div>
+                    </div>
+                    <div class="network-option selected" data-network="polygon" onclick="selectNetwork('polygon')">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🟣</div>
+                        <div style="font-weight: bold;">Polygon</div>
+                    </div>
+                    <div class="network-option" data-network="bsc" onclick="selectNetwork('bsc')">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🟡</div>
+                        <div style="font-weight: bold;">BSC</div>
+                    </div>
+                    <div class="network-option" data-network="arbitrum" onclick="selectNetwork('arbitrum')">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🔵</div>
+                        <div style="font-weight: bold;">Arbitrum</div>
+                    </div>
+                    <div class="network-option" data-network="optimism" onclick="selectNetwork('optimism')">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🔴</div>
+                        <div style="font-weight: bold;">Optimism</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="mintNFT" checked>
+                    <label class="form-label" style="margin: 0; cursor: pointer;" for="mintNFT">Mint as NFT</label>
+                </div>
+                <div class="form-help">Create a unique NFT representing this song</div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="createToken" checked>
+                    <label class="form-label" style="margin: 0; cursor: pointer;" for="createToken">Create ERC-20 Token</label>
+                </div>
+                <div class="form-help">Launch a token for this release</div>
+            </div>
+
+            <div class="form-group" id="tokenSupplyGroup">
+                <label class="form-label">Token Supply</label>
+                <input type="number" class="form-input" id="tokenSupply" value="1000000" placeholder="1000000">
+                <div class="form-help">Total number of tokens to mint</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Wallet ID *</label>
+                <input type="text" class="form-input" id="walletId" placeholder="Enter your wallet ID">
+                <div class="form-help">The wallet that will deploy the contracts. <a href="/admin/wallet.html" target="_blank" style="color: var(--primary);">Create wallet →</a></div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-outline" onclick="previousStep(1)">← Back</button>
+                <button class="btn btn-primary" onclick="nextStep(3)">Next: Review →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Review & Publish -->
+        <div class="card hidden" id="form-step3">
+            <h2 class="card-title">👀 Review Your Publishing</h2>
+
+            <div class="alert alert-info">
+                Please review all details before publishing. This action will deploy smart contracts to the blockchain.
+            </div>
+
+            <div class="result-box" id="reviewBox">
+                <!-- Will be populated dynamically -->
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-outline" onclick="previousStep(2)">← Back</button>
+                <button class="btn btn-success" onclick="publishSong()">🚀 Publish to Blockchain</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Complete -->
+        <div class="card hidden" id="form-step4">
+            <h2 class="card-title">✅ Publishing Complete!</h2>
+
+            <div class="alert alert-success" id="successMessage">
+                Your song has been successfully published to the blockchain!
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <!-- Will be populated with transaction results -->
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="resetForm()">Publish Another Song</button>
+                <a href="/admin/index.html" class="btn btn-outline">Back to Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="card hidden" id="loadingOverlay">
+            <div class="loading">
+                <div class="spinner"></div>
+                <h3 style="color: var(--dark); margin-bottom: 10px;">Publishing to Blockchain...</h3>
+                <p style="color: #666;">This may take a few moments. Please don't close this window.</p>
+                <div style="margin-top: 20px; color: #666; font-size: 0.9em;" id="loadingStatus">
+                    Preparing transaction...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        let currentStep = 1;
+        let selectedNetwork = 'polygon';
+        let publishData = {};
+
+        // Initialize
+        document.getElementById('createToken').addEventListener('change', (e) => {
+            document.getElementById('tokenSupplyGroup').style.display =
+                e.target.checked ? 'block' : 'none';
+        });
+
+        // Select Network
+        function selectNetwork(network) {
+            selectedNetwork = network;
+            document.querySelectorAll('.network-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`[data-network="${network}"]`).classList.add('selected');
+        }
+
+        // Next Step
+        function nextStep(step) {
+            if (step === 2) {
+                // Validate step 1
+                if (!document.getElementById('songId').value) {
+                    alert('Please enter a Song ID');
+                    return;
+                }
+                if (!document.getElementById('songTitle').value) {
+                    alert('Please enter a Song Title');
+                    return;
+                }
+                if (!document.getElementById('artistName').value) {
+                    alert('Please enter an Artist Name');
+                    return;
+                }
+            }
+
+            if (step === 3) {
+                // Validate step 2
+                if (!document.getElementById('walletId').value) {
+                    alert('Please enter a Wallet ID');
+                    return;
+                }
+
+                // Build review data
+                buildReview();
+            }
+
+            updateStepUI(step);
+        }
+
+        // Previous Step
+        function previousStep(step) {
+            updateStepUI(step);
+        }
+
+        // Update Step UI
+        function updateStepUI(step) {
+            // Hide all forms
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`form-step${i}`).classList.add('hidden');
+                document.getElementById(`step${i}`).classList.remove('active', 'completed');
+            }
+
+            // Show current form
+            document.getElementById(`form-step${step}`).classList.remove('hidden');
+
+            // Update step indicators
+            for (let i = 1; i < step; i++) {
+                document.getElementById(`step${i}`).classList.add('completed');
+            }
+            document.getElementById(`step${step}`).classList.add('active');
+
+            currentStep = step;
+        }
+
+        // Build Review
+        function buildReview() {
+            publishData = {
+                songId: document.getElementById('songId').value,
+                walletId: document.getElementById('walletId').value,
+                options: {
+                    mintNFT: document.getElementById('mintNFT').checked,
+                    createToken: document.getElementById('createToken').checked,
+                    network: selectedNetwork,
+                    tokenSupply: document.getElementById('tokenSupply').value
+                }
+            };
+
+            const reviewBox = document.getElementById('reviewBox');
+            reviewBox.innerHTML = `
+                <div class="result-item">
+                    <div class="result-label">Song ID</div>
+                    <div class="result-value">${publishData.songId}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Song Title</div>
+                    <div class="result-value">${document.getElementById('songTitle').value}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Artist</div>
+                    <div class="result-value">${document.getElementById('artistName').value}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Network</div>
+                    <div class="result-value">${selectedNetwork.toUpperCase()}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Mint NFT</div>
+                    <div class="result-value">${publishData.options.mintNFT ? '✅ Yes' : '❌ No'}</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Create Token</div>
+                    <div class="result-value">${publishData.options.createToken ? '✅ Yes' : '❌ No'}</div>
+                </div>
+                ${publishData.options.createToken ? `
+                <div class="result-item">
+                    <div class="result-label">Token Supply</div>
+                    <div class="result-value">${publishData.options.tokenSupply}</div>
+                </div>
+                ` : ''}
+                <div class="result-item">
+                    <div class="result-label">Wallet ID</div>
+                    <div class="result-value">${publishData.walletId}</div>
+                </div>
+            `;
+        }
+
+        // Publish Song
+        async function publishSong() {
+            // Hide review, show loading
+            document.getElementById('form-step3').classList.add('hidden');
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+
+            try {
+                updateLoadingStatus('Connecting to blockchain...');
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                updateLoadingStatus('Deploying NFT contract...');
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                updateLoadingStatus('Creating ERC-20 token...');
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                updateLoadingStatus('Finalizing transaction...');
+
+                const response = await fetch(`${API_BASE}/api/publish/song`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(publishData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Publishing failed');
+                }
+
+                const data = await response.json();
+                displayResults(data.result);
+
+            } catch (error) {
+                console.error('Publishing error:', error);
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                document.getElementById('form-step3').classList.remove('hidden');
+                alert('Publishing failed: ' + error.message);
+            }
+        }
+
+        // Update Loading Status
+        function updateLoadingStatus(message) {
+            document.getElementById('loadingStatus').textContent = message;
+        }
+
+        // Display Results
+        function displayResults(result) {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+
+            const resultBox = document.getElementById('resultBox');
+            let html = '';
+
+            if (result.nft) {
+                html += `
+                    <div class="result-item">
+                        <div class="result-label">NFT Contract</div>
+                        <div class="result-value">${result.nft.contractAddress}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">NFT Token ID</div>
+                        <div class="result-value">${result.nft.tokenId}</div>
+                    </div>
+                `;
+            }
+
+            if (result.token) {
+                html += `
+                    <div class="result-item">
+                        <div class="result-label">Token Contract</div>
+                        <div class="result-value">${result.token.contractAddress}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Token Symbol</div>
+                        <div class="result-value">${result.token.symbol}</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Total Supply</div>
+                        <div class="result-value">${result.token.totalSupply}</div>
+                    </div>
+                `;
+            }
+
+            resultBox.innerHTML = html;
+            updateStepUI(4);
+        }
+
+        // Reset Form
+        function resetForm() {
+            document.getElementById('songId').value = '';
+            document.getElementById('songTitle').value = '';
+            document.getElementById('artistName').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('walletId').value = '';
+            document.getElementById('tokenSupply').value = '1000000';
+            document.getElementById('mintNFT').checked = true;
+            document.getElementById('createToken').checked = true;
+            selectedNetwork = 'polygon';
+            updateStepUI(1);
+        }
+    </script>
+</body>
+</html>

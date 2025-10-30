@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Lab - Security & Banking Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Cyber Lab Interface</h1>
+            <p class="subtitle">Security Analysis & Banking Analytics Platform</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('cyberlab')">🛡️ CyberLab</button>
+            <button class="tab-btn" onclick="switchTab('banking')">🏦 Banking</button>
+            <button class="tab-btn" onclick="switchTab('guardian')">👼 Guardian Angel</button>
+            <button class="tab-btn" onclick="switchTab('attacks')">🚨 Attack Monitor</button>
+            <button class="tab-btn" onclick="switchTab('crypter')">🔐 Crypter/FUD</button>
+            <button class="tab-btn" onclick="switchTab('learning')">🧠 Bot Learning</button>
+        </div>
+
+        <!-- CYBERLAB TAB -->
+        <div id="cyberlab-tab" class="tab-content active">
+            <div class="grid">
+                <!-- Contract Scanner -->
+                <div class="card">
+                    <h2>📋 Smart Contract Scanner</h2>
+                    <div class="form-group">
+                        <input type="text" id="contract-address" placeholder="Contract Address (0x...)">
+                        <input type="text" id="contract-network" placeholder="Network (e.g., ethereum)">
+                        <button onclick="scanContract()">Scan Contract</button>
+                    </div>
+                    <div id="contract-result" class="result"></div>
+                </div>
+
+                <!-- Penetration Test -->
+                <div class="card">
+                    <h2>🔍 Penetration Testing</h2>
+                    <div class="form-group">
+                        <input type="text" id="pentest-url" placeholder="Target URL">
+                        <button onclick="penetrationTest()">Run Pen Test</button>
+                    </div>
+                    <div id="pentest-result" class="result"></div>
+                </div>
+
+                <!-- Attack Simulation -->
+                <div class="card">
+                    <h2>⚔️ Attack Simulation</h2>
+                    <div class="form-group">
+                        <input type="text" id="attack-type" placeholder="Attack Type (e.g., DDoS, Phishing)">
+                        <input type="text" id="attack-target" placeholder="Target">
+                        <button onclick="simulateAttack()">Simulate Attack</button>
+                    </div>
+                    <div id="attack-result" class="result"></div>
+                </div>
+
+                <!-- Wallet Audit -->
+                <div class="card">
+                    <h2>💼 Wallet Security Audit</h2>
+                    <div class="form-group">
+                        <input type="text" id="wallet-address" placeholder="Wallet Address (0x...)">
+                        <button onclick="auditWallet()">Audit Wallet</button>
+                    </div>
+                    <div id="wallet-result" class="result"></div>
+                </div>
+
+                <!-- Phishing Detection -->
+                <div class="card">
+                    <h2>🎣 Phishing Detection</h2>
+                    <div class="form-group">
+                        <input type="text" id="phishing-url" placeholder="URL to check">
+                        <button onclick="detectPhishing()">Check URL</button>
+                    </div>
+                    <div id="phishing-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANKING TAB -->
+        <div id="banking-tab" class="tab-content">
+            <div class="grid">
+                <!-- Link Account -->
+                <div class="card">
+                    <h2>🔗 Link Bank Account</h2>
+                    <div class="form-group">
+                        <input type="text" id="user-id" placeholder="User ID">
+                        <input type="text" id="plaid-token" placeholder="Plaid Token">
+                        <button onclick="linkAccount()">Link Account</button>
+                    </div>
+                    <div id="link-result" class="result"></div>
+                </div>
+
+                <!-- Check Balance -->
+                <div class="card">
+                    <h2>💰 Account Balance</h2>
+                    <div class="form-group">
+                        <input type="text" id="balance-account" placeholder="Account ID">
+                        <button onclick="getBalance()">Get Balance</button>
+                    </div>
+                    <div id="balance-result" class="result"></div>
+                </div>
+
+                <!-- ACH Transfer -->
+                <div class="card">
+                    <h2>💸 ACH Transfer</h2>
+                    <div class="form-group">
+                        <input type="text" id="ach-account" placeholder="Account ID">
+                        <input type="number" id="ach-amount" placeholder="Amount">
+                        <select id="ach-direction">
+                            <option value="deposit">Deposit</option>
+                            <option value="withdrawal">Withdrawal</option>
+                        </select>
+                        <button onclick="initiateACH()">Initiate ACH</button>
+                    </div>
+                    <div id="ach-result" class="result"></div>
+                </div>
+
+                <!-- Transactions -->
+                <div class="card">
+                    <h2>📊 Transactions</h2>
+                    <div class="form-group">
+                        <input type="text" id="trans-account" placeholder="Account ID">
+                        <input type="number" id="trans-days" placeholder="Days (default: 30)" value="30">
+                        <button onclick="getTransactions()">Get Transactions</button>
+                    </div>
+                    <div id="trans-result" class="result"></div>
+                </div>
+
+                <!-- Categorize Transactions -->
+                <div class="card">
+                    <h2>🏷️ Transaction Categories</h2>
+                    <div class="form-group">
+                        <input type="text" id="cat-account" placeholder="Account ID">
+                        <button onclick="categorizeTransactions()">Categorize</button>
+                    </div>
+                    <div id="cat-result" class="result"></div>
+                </div>
+
+                <!-- Credit Score -->
+                <div class="card">
+                    <h2>📈 Credit Score</h2>
+                    <div class="form-group">
+                        <input type="text" id="credit-user" placeholder="User ID">
+                        <button onclick="getCreditScore()">Get Score</button>
+                    </div>
+                    <div id="credit-result" class="result"></div>
+                </div>
+
+                <!-- Loan Qualification -->
+                <div class="card">
+                    <h2>🏠 Loan Qualification</h2>
+                    <div class="form-group">
+                        <input type="text" id="loan-user" placeholder="User ID">
+                        <input type="number" id="loan-amount" placeholder="Loan Amount">
+                        <button onclick="analyzeLoan()">Analyze</button>
+                    </div>
+                    <div id="loan-result" class="result"></div>
+                </div>
+
+                <!-- Financial Health -->
+                <div class="card">
+                    <h2>💪 Financial Health</h2>
+                    <div class="form-group">
+                        <input type="text" id="health-user" placeholder="User ID">
+                        <button onclick="getFinancialHealth()">Calculate Health</button>
+                    </div>
+                    <div id="health-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUARDIAN ANGEL TAB -->
+        <div id="guardian-tab" class="tab-content">
+            <div class="grid">
+                <!-- Daily Briefing -->
+                <div class="card full-width">
+                    <h2>🌅 Daily Briefing</h2>
+                    <div class="form-group">
+                        <input type="text" id="briefing-user" placeholder="User ID" value="user123">
+                        <button onclick="getDailyBriefing()">Get Today's Briefing</button>
+                    </div>
+                    <div id="briefing-result" class="result"></div>
+                </div>
+
+                <!-- Health Tracking -->
+                <div class="card">
+                    <h2>❤️ Health Metrics</h2>
+                    <div class="form-group">
+                        <input type="text" id="health-user" placeholder="User ID" value="user123">
+                        <input type="number" id="heart-rate" placeholder="Heart Rate (bpm)">
+                        <input type="number" id="sleep-hours" placeholder="Sleep Hours">
+                        <input type="number" id="steps" placeholder="Steps">
+                        <input type="number" id="water-intake" placeholder="Water (ml)">
+                        <input type="number" id="stress-level" placeholder="Stress (1-10)">
+                        <button onclick="trackHealth()">Track Health</button>
+                    </div>
+                    <div id="health-track-result" class="result"></div>
+                </div>
+
+                <!-- Wellness Analysis -->
+                <div class="card">
+                    <h2>💪 Wellness Score</h2>
+                    <div class="form-group">
+                        <input type="text" id="wellness-user" placeholder="User ID" value="user123">
+                        <button onclick="analyzeWellness()">Analyze Wellness</button>
+                    </div>
+                    <div id="wellness-result" class="result"></div>
+                </div>
+
+                <!-- Schedule Management -->
+                <div class="card full-width">
+                    <h2>📅 Smart Schedule</h2>
+                    <div class="form-group">
+                        <input type="text" id="schedule-user" placeholder="User ID" value="user123">
+                        <button onclick="getSchedule()">View Schedule</button>
+                        <button onclick="showAddScheduleForm()">Add New Item</button>
+                    </div>
+                    <div id="add-schedule-form" style="display:none; margin-top: 15px;">
+                        <input type="text" id="schedule-title" placeholder="Title">
+                        <input type="datetime-local" id="schedule-start">
+                        <input type="datetime-local" id="schedule-end">
+                        <select id="schedule-priority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <select id="schedule-category">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="health">Health</option>
+                            <option value="social">Social</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <button onclick="addScheduleItem()">Add to Schedule</button>
+                    </div>
+                    <div id="schedule-result" class="result"></div>
+                </div>
+
+                <!-- Safety Check -->
+                <div class="card">
+                    <h2>🛡️ Safety Monitor</h2>
+                    <div class="form-group">
+                        <input type="text" id="safety-user" placeholder="User ID" value="user123">
+                        <button onclick="checkSafety()">Check Safety</button>
+                        <button onclick="sendSOS()" style="background: #ef4444;">🆘 SOS</button>
+                    </div>
+                    <div id="safety-result" class="result"></div>
+                </div>
+
+                <!-- Alerts -->
+                <div class="card">
+                    <h2>🔔 Active Alerts</h2>
+                    <div class="form-group">
+                        <select id="alert-type-filter">
+                            <option value="">All Types</option>
+                            <option value="health">Health</option>
+                            <option value="safety">Safety</option>
+                            <option value="wellness">Wellness</option>
+                            <option value="schedule">Schedule</option>
+                            <option value="reminder">Reminder</option>
+                        </select>
+                        <button onclick="getGuardianAlerts()">Load Alerts</button>
+                    </div>
+                    <div id="guardian-alerts-result" class="result"></div>
+                </div>
+
+                <!-- Health History -->
+                <div class="card full-width">
+                    <h2>📊 Health History</h2>
+                    <div class="form-group">
+                        <input type="number" id="history-days" placeholder="Days" value="7">
+                        <button onclick="getHealthHistory()">View History</button>
+                    </div>
+                    <div id="history-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATTACK MONITOR TAB -->
+        <div id="attacks-tab" class="tab-content">
+            <div class="grid">
+                <!-- Statistics Dashboard -->
+                <div class="card full-width">
+                    <h2>📊 Real-Time Attack Statistics</h2>
+                    <button onclick="loadAttackStats()">Refresh Stats</button>
+                    <div id="stats-result" class="result"></div>
+                </div>
+
+                <!-- Attack Logs -->
+                <div class="card full-width">
+                    <h2>🚨 Live Attack Logs</h2>
+                    <div class="form-group">
+                        <select id="attack-severity-filter">
+                            <option value="">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <select id="attack-status-filter">
+                            <option value="">All Status</option>
+                            <option value="detected">Detected</option>
+                            <option value="blocked">Blocked</option>
+                            <option value="mitigated">Mitigated</option>
+                            <option value="investigating">Investigating</option>
+                        </select>
+                        <button onclick="loadAttackLogs()">Load Attacks</button>
+                    </div>
+                    <div id="attack-logs-result" class="result"></div>
+                </div>
+
+                <!-- Vulnerability Reports -->
+                <div class="card full-width">
+                    <h2>🔍 Vulnerability Reports</h2>
+                    <div class="form-group">
+                        <select id="vuln-type-filter">
+                            <option value="">All Types</option>
+                            <option value="contract">Smart Contracts</option>
+                            <option value="wallet">Wallets</option>
+                            <option value="url">URLs</option>
+                            <option value="system">Systems</option>
+                        </select>
+                        <button onclick="loadVulnerabilities()">Load Reports</button>
+                    </div>
+                    <div id="vuln-result" class="result"></div>
+                </div>
+
+                <!-- Threat Intelligence -->
+                <div class="card full-width">
+                    <h2>🎯 Threat Intelligence</h2>
+                    <button onclick="loadThreats()">Load Threat Intel</button>
+                    <div id="threats-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRYPTER TAB -->
+        <div id="crypter-tab" class="tab-content">
+            <div class="grid">
+                <!-- Payload Encryption -->
+                <div class="card full-width">
+                    <h2>🔐 Payload Encryption (FUD Crypter)</h2>
+                    <p style="color: #f59e0b; margin-bottom: 15px;">⚠️ For authorized penetration testing only - Guided by the Holy Spirit</p>
+                    <div class="form-group">
+                        <textarea id="crypter-payload" placeholder="Enter payload/code/shellcode to encrypt" rows="6"></textarea>
+                        <select id="crypter-type">
+                            <option value="code">JavaScript Code</option>
+                            <option value="html">HTML</option>
+                            <option value="payload">Generic Payload</option>
+                            <option value="shellcode">Shellcode</option>
+                        </select>
+                        <select id="crypter-method">
+                            <option value="fud">FUD (Fully Undetectable)</option>
+                            <option value="polymorphic">Polymorphic</option>
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                            <option value="base64">Multi-Layer Base64</option>
+                        </select>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="crypter-junk" checked style="margin-right: 10px;">
+                            Add junk code for obfuscation
+                        </label>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="crypter-obfuscate" checked style="margin-right: 10px;">
+                            Obfuscate string literals
+                        </label>
+                        <button onclick="encryptPayload()">🔒 Encrypt Payload</button>
+                    </div>
+                    <div id="crypter-result" class="result"></div>
+                </div>
+
+                <!-- HTML Obfuscation -->
+                <div class="card full-width">
+                    <h2>🕸️ HTML/JavaScript Obfuscation</h2>
+                    <div class="form-group">
+                        <textarea id="html-input" placeholder="Enter HTML with <script> tags" rows="6"></textarea>
+                        <select id="html-method">
+                            <option value="fud">FUD Encryption</option>
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                        </select>
+                        <button onclick="obfuscateHTML()">🔐 Obfuscate HTML</button>
+                    </div>
+                    <div id="html-result" class="result"></div>
+                </div>
+
+                <!-- Payload Decryption -->
+                <div class="card full-width">
+                    <h2>🔓 Payload Decryption</h2>
+                    <div class="form-group">
+                        <textarea id="decrypt-payload" placeholder="Enter encrypted payload" rows="4"></textarea>
+                        <input type="text" id="decrypt-key" placeholder="Decryption Key">
+                        <select id="decrypt-method">
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                            <option value="base64">Base64</option>
+                        </select>
+                        <button onclick="decryptPayload()">🔑 Decrypt</button>
+                    </div>
+                    <div id="decrypt-result" class="result"></div>
+                </div>
+
+                <!-- Stub Generator -->
+                <div class="card full-width">
+                    <h2>📦 Crypter Stub Generator</h2>
+                    <p style="color: #10b981; margin-bottom: 10px;">Generate standalone loader for encrypted payloads</p>
+                    <div class="form-group">
+                        <textarea id="stub-encrypted" placeholder="Enter encrypted payload" rows="3"></textarea>
+                        <input type="text" id="stub-key" placeholder="Encryption Key">
+                        <select id="stub-method">
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                        </select>
+                        <button onclick="generateStub()">📦 Generate Stub</button>
+                    </div>
+                    <div id="stub-result" class="result"></div>
+                </div>
+
+                <!-- Detection Info -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>🛡️ Anti-Virus Detection Rates</h2>
+                    <div style="line-height: 1.8;">
+                        <p><strong>FUD (Fully Undetectable):</strong> <span style="color: #10b981;">0-15% detection</span> - Maximum obfuscation</p>
+                        <p><strong>Polymorphic:</strong> <span style="color: #10b981;">10-30% detection</span> - Changes signature</p>
+                        <p><strong>AES-256:</strong> <span style="color: #f59e0b;">20-40% detection</span> - Strong encryption</p>
+                        <p><strong>XOR:</strong> <span style="color: #ef4444;">30-50% detection</span> - Basic encryption</p>
+                        <p><strong>Base64:</strong> <span style="color: #ef4444;">40-60% detection</span> - Simple encoding</p>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>Note:</strong> All crypter operations are guided by the Holy Spirit for ethical use only.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEARNING TAB -->
+        <div id="learning-tab" class="tab-content">
+            <div class="grid">
+                <!-- Skills -->
+                <div class="card full-width">
+                    <h2>🎯 Bot Skills</h2>
+                    <div class="form-group">
+                        <select id="skills-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getSkills()">Load Skills</button>
+                    </div>
+                    <div id="skills-result" class="result"></div>
+                </div>
+
+                <!-- Executions -->
+                <div class="card full-width">
+                    <h2>📜 Execution History</h2>
+                    <div class="form-group">
+                        <select id="exec-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getExecutions()">Load Executions</button>
+                    </div>
+                    <div id="exec-result" class="result"></div>
+                </div>
+
+                <!-- Memories -->
+                <div class="card full-width">
+                    <h2>🧠 Bot Memories</h2>
+                    <div class="form-group">
+                        <select id="mem-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getMemories()">Load Memories</button>
+                    </div>
+                    <div id="mem-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

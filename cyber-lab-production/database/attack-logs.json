@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ATK_1761053234172_lrsd2l",
+    "timestamp": "2025-10-21T13:27:14.172Z",
+    "attackType": "DDoS",
+    "target": "production-server.example.com",
+    "severity": "critical",
+    "status": "mitigated",
+    "details": {
+      "method": "DDoS attack simulation on production-server.example.com",
+      "mitigationApplied": [
+        "Implement rate limiting (1000 req/min per IP)",
+        "Use CDN with DDoS protection (Cloudflare/Akamai)",
+        "Configure firewall rules to block malicious IPs",
+        "Enable auto-scaling for traffic spikes"
+      ]
+    },
+    "metadata": {
+      "detectionEngine": "CyberLab AI Detection System",
+      "confidence": 95,
+      "falsePositive": false
+    }
+  },
+  {
+    "id": "ATK_1761053234190_jgchgr",
+    "timestamp": "2025-10-21T13:27:14.190Z",
+    "attackType": "Phishing",
+    "target": "http://192.168.1.1/verify-account-now",
+    "severity": "high",
+    "status": "detected",
+    "details": {
+      "payload": "http://192.168.1.1/verify-account-now",
+      "impactedSystems": [
+        "User Authentication"
+      ]
+    },
+    "metadata": {
+      "detectionEngine": "Phishing URL Analyzer",
+      "confidence": 90,
+      "falsePositive": false
+    }
+  },
+  {
+    "id": "ATK_1761053251557_gw9k3g",
+    "timestamp": "2025-10-21T13:27:31.557Z",
+    "attackType": "DDoS",
+    "target": "production-server",
+    "severity": "critical",
+    "status": "mitigated",
+    "details": {
+      "method": "DDoS attack simulation on production-server",
+      "mitigationApplied": [
+        "Implement rate limiting (1000 req/min per IP)",
+        "Use CDN with DDoS protection (Cloudflare/Akamai)",
+        "Configure firewall rules to block malicious IPs",
+        "Enable auto-scaling for traffic spikes"
+      ]
+    },
+    "metadata": {
+      "detectionEngine": "CyberLab AI Detection System",
+      "confidence": 95,
+      "falsePositive": false
+    }
+  }
+]

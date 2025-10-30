@@ -1,0 +1,27 @@
+name: Post Content
+
+# Controls when the workflow will run
+on:
+  # Runs every morning at 9am Pacific Time (4pm UTC)
+  schedule:
+    - cron:  '0 16 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  
+  post:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5 
+      - run: pip install lightning-sdk
+      - env:
+          LIGHTNING_ORG: lightning-ai # if this teamspace is within an org
+          LIGHTNING_USER_ID: ${{ secrets.LIGHTNING_USER_ID }}
+          LIGHTNING_API_KEY: ${{ secrets.LIGHTNING_API_KEY }}
+        run: python action.py
+      

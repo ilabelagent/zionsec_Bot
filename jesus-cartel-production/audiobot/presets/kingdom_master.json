@@ -1,0 +1,52 @@
+{
+  "name": "Kingdom Master Standard",
+  "description": "Professional mastering preset for Jesus Cartel releases - RIDE WITH CHRIST",
+  "version": "1.0",
+  "filters": {
+    "highpass": 30,
+    "lowpass": 18000,
+    "denoise": 0.005,
+    "deess": {
+      "enabled": true,
+      "frequency": 6000,
+      "threshold": 0.3
+    },
+    "compression": {
+      "threshold": -18,
+      "ratio": 3,
+      "attack": 5,
+      "release": 50,
+      "makeup": 2
+    },
+    "eq": {
+      "low_shelf": {
+        "frequency": 80,
+        "gain": 1.5
+      },
+      "presence": {
+        "frequency": 3000,
+        "gain": 1.0,
+        "q": 1.5
+      },
+      "air": {
+        "frequency": 10000,
+        "gain": 2.0,
+        "q": 0.7
+      }
+    },
+    "limiter": {
+      "threshold": -1.0,
+      "ceiling": -0.3
+    }
+  },
+  "target_levels": {
+    "lufs": -14.0,
+    "peak": -1.0,
+    "true_peak": -0.5
+  },
+  "format": {
+    "sample_rate": 48000,
+    "bit_depth": 24,
+    "format": "wav"
+  }
+}

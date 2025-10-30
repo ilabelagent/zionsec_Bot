@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Delete unnecessary folders (miniconda3, logs, Untitled Folder)",
+    "status": "completed",
+    "activeForm": "Deleting unnecessary folders"
+  },
+  {
+    "content": "Compare duplicate jesus-cartel and cyber-lab folders",
+    "status": "completed",
+    "activeForm": "Comparing duplicate folders"
+  },
+  {
+    "content": "Move relevant utilities to root level",
+    "status": "completed",
+    "activeForm": "Moving relevant utilities to root level"
+  },
+  {
+    "content": "Secure sensitive files",
+    "status": "completed",
+    "activeForm": "Securing sensitive files"
+  },
+  {
+    "content": "Initialize git repository",
+    "status": "in_progress",
+    "activeForm": "Initializing git repository"
+  },
+  {
+    "content": "Sync with remote git repository",
+    "status": "pending",
+    "activeForm": "Syncing with remote git repository"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Create Kingdom mastering preset configuration",
+    "status": "completed",
+    "activeForm": "Creating Kingdom mastering preset configuration"
+  },
+  {
+    "content": "Add WAV upload and mastering endpoint",
+    "status": "in_progress",
+    "activeForm": "Adding WAV upload and mastering endpoint"
+  },
+  {
+    "content": "Create preview management system",
+    "status": "pending",
+    "activeForm": "Creating preview management system"
+  },
+  {
+    "content": "Add publish/schedule endpoints",
+    "status": "pending",
+    "activeForm": "Adding publish/schedule endpoints"
+  },
+  {
+    "content": "Test complete workflow",
+    "status": "pending",
+    "activeForm": "Testing complete workflow"
+  }
+]

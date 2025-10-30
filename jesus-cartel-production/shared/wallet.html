@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Management - Jesus Cartel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .nav-breadcrumb {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            color: #666;
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: monospace;
+        }
+
+        .form-help {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid var(--danger);
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid var(--warning);
+        }
+
+        .wallet-display {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .wallet-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .wallet-item:last-child {
+            border-bottom: none;
+        }
+
+        .wallet-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .wallet-value {
+            color: var(--dark);
+            font-weight: bold;
+            font-family: monospace;
+            word-break: break-all;
+            text-align: right;
+            max-width: 60%;
+            font-size: 0.9em;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .balance-amount {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .balance-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .network-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👛 Wallet Management</h1>
+            <p style="color: #666; margin-top: 10px;">Create and manage your Web3 wallets</p>
+            <div class="nav-breadcrumb">
+                <a href="/admin/index.html">Home</a>
+                <span>/</span>
+                <span>Wallet</span>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('create')">Create Wallet</button>
+                <button class="tab" onclick="switchTab('import')">Import Wallet</button>
+                <button class="tab" onclick="switchTab('balance')">Check Balance</button>
+                <button class="tab" onclick="switchTab('send')">Send Transaction</button>
+            </div>
+
+            <!-- Create Wallet Tab -->
+            <div class="tab-content active" id="create-tab">
+                <h2 class="card-title">🆕 Create New Wallet</h2>
+                <p style="color: #666; margin-bottom: 20px;">Generate a new Web3 wallet with a secure mnemonic phrase</p>
+
+                <div class="form-group">
+                    <label class="form-label">User ID *</label>
+                    <input type="text" class="form-input" id="createUserId" placeholder="e.g., user-123">
+                    <div class="form-help">Unique identifier for this wallet</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Network *</label>
+                    <select class="form-select" id="createNetwork">
+                        <option value="ethereum">Ethereum</option>
+                        <option value="polygon" selected>Polygon</option>
+                        <option value="bsc">BNB Smart Chain</option>
+                        <option value="arbitrum">Arbitrum</option>
+                        <option value="optimism">Optimism</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="createWallet()">Create Wallet</button>
+
+                <div id="createResult" class="hidden">
+                    <div class="alert alert-success" style="margin-top: 20px;">
+                        Wallet created successfully! <strong>Save your mnemonic phrase securely!</strong>
+                    </div>
+                    <div class="wallet-display" id="createWalletDisplay"></div>
+                </div>
+            </div>
+
+            <!-- Import Wallet Tab -->
+            <div class="tab-content" id="import-tab">
+                <h2 class="card-title">📥 Import Wallet</h2>
+                <p style="color: #666; margin-bottom: 20px;">Import an existing wallet using mnemonic phrase or private key</p>
+
+                <div class="form-group">
+                    <label class="form-label">Import Method</label>
+                    <select class="form-select" id="importMethod" onchange="toggleImportMethod()">
+                        <option value="mnemonic">Mnemonic Phrase</option>
+                        <option value="privatekey">Private Key</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="mnemonicGroup">
+                    <label class="form-label">Mnemonic Phrase *</label>
+                    <textarea class="form-textarea" id="mnemonicInput" placeholder="Enter your 12 or 24 word mnemonic phrase..."></textarea>
+                    <div class="form-help">Enter the words separated by spaces</div>
+                </div>
+
+                <div class="form-group hidden" id="privatekeyGroup">
+                    <label class="form-label">Private Key *</label>
+                    <input type="password" class="form-input" id="privatekeyInput" placeholder="0x...">
+                    <div class="form-help">Enter your wallet's private key</div>
+                </div>
+
+                <button class="btn btn-success" onclick="importWallet()">Import Wallet</button>
+
+                <div id="importResult" class="hidden">
+                    <div class="alert alert-success" style="margin-top: 20px;">
+                        Wallet imported successfully!
+                    </div>
+                    <div class="wallet-display" id="importWalletDisplay"></div>
+                </div>
+            </div>
+
+            <!-- Check Balance Tab -->
+            <div class="tab-content" id="balance-tab">
+                <h2 class="card-title">💰 Check Balance</h2>
+                <p style="color: #666; margin-bottom: 20px;">View the balance of any wallet address</p>
+
+                <div class="form-group">
+                    <label class="form-label">Wallet Address *</label>
+                    <input type="text" class="form-input" id="balanceAddress" placeholder="0x...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Network *</label>
+                    <select class="form-select" id="balanceNetwork">
+                        <option value="ethereum">Ethereum</option>
+                        <option value="polygon" selected>Polygon</option>
+                        <option value="bsc">BNB Smart Chain</option>
+                        <option value="arbitrum">Arbitrum</option>
+                        <option value="optimism">Optimism</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-info" onclick="checkBalance()">Check Balance</button>
+
+                <div id="balanceResult" class="hidden"></div>
+            </div>
+
+            <!-- Send Transaction Tab -->
+            <div class="tab-content" id="send-tab">
+                <h2 class="card-title">💸 Send Transaction</h2>
+                <p style="color: #666; margin-bottom: 20px;">Send cryptocurrency to another address</p>
+
+                <div class="alert alert-warning">
+                    ⚠️ <strong>Warning:</strong> Transactions are irreversible. Double-check all details before sending.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Private Key *</label>
+                    <input type="password" class="form-input" id="sendPrivateKey" placeholder="Your private key">
+                    <div class="form-help">Required to sign the transaction</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Recipient Address *</label>
+                    <input type="text" class="form-input" id="sendTo" placeholder="0x...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Amount *</label>
+                    <input type="number" class="form-input" id="sendAmount" placeholder="0.0" step="0.000001">
+                    <div class="form-help">Amount in native currency (ETH, MATIC, BNB, etc.)</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Network *</label>
+                    <select class="form-select" id="sendNetwork">
+                        <option value="ethereum">Ethereum</option>
+                        <option value="polygon" selected>Polygon</option>
+                        <option value="bsc">BNB Smart Chain</option>
+                        <option value="arbitrum">Arbitrum</option>
+                        <option value="optimism">Optimism</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="sendTransaction()">Send Transaction</button>
+
+                <div id="sendResult" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        // Switch Tabs
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+
+            // Show selected tab
+            event.target.classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+
+        // Create Wallet
+        async function createWallet() {
+            const userId = document.getElementById('createUserId').value;
+            const network = document.getElementById('createNetwork').value;
+
+            if (!userId) {
+                alert('Please enter a User ID');
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Creating...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/wallet/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, network })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create wallet');
+                }
+
+                const data = await response.json();
+                displayWallet(data.wallet, 'createWalletDisplay');
+                document.getElementById('createResult').classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to create wallet: ' + error.message);
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Create Wallet';
+            }
+        }
+
+        // Toggle Import Method
+        function toggleImportMethod() {
+            const method = document.getElementById('importMethod').value;
+            if (method === 'mnemonic') {
+                document.getElementById('mnemonicGroup').classList.remove('hidden');
+                document.getElementById('privatekeyGroup').classList.add('hidden');
+            } else {
+                document.getElementById('mnemonicGroup').classList.add('hidden');
+                document.getElementById('privatekeyGroup').classList.remove('hidden');
+            }
+        }
+
+        // Import Wallet
+        async function importWallet() {
+            const method = document.getElementById('importMethod').value;
+            const button = event.target;
+
+            button.disabled = true;
+            button.textContent = 'Importing...';
+
+            try {
+                let response;
+                if (method === 'mnemonic') {
+                    const mnemonic = document.getElementById('mnemonicInput').value.trim();
+                    if (!mnemonic) {
+                        throw new Error('Please enter a mnemonic phrase');
+                    }
+                    response = await fetch(`${API_BASE}/api/wallet/import/mnemonic`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ mnemonic })
+                    });
+                } else {
+                    const privateKey = document.getElementById('privatekeyInput').value.trim();
+                    if (!privateKey) {
+                        throw new Error('Please enter a private key');
+                    }
+                    response = await fetch(`${API_BASE}/api/wallet/import/privatekey`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ privateKey })
+                    });
+                }
+
+                if (!response.ok) {
+                    throw new Error('Failed to import wallet');
+                }
+
+                const data = await response.json();
+                displayWallet(data.wallet, 'importWalletDisplay');
+                document.getElementById('importResult').classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to import wallet: ' + error.message);
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Import Wallet';
+            }
+        }
+
+        // Check Balance
+        async function checkBalance() {
+            const address = document.getElementById('balanceAddress').value.trim();
+            const network = document.getElementById('balanceNetwork').value;
+
+            if (!address) {
+                alert('Please enter a wallet address');
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Checking...';
+
+            const resultDiv = document.getElementById('balanceResult');
+            resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading balance...</p></div>';
+            resultDiv.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/wallet/${address}/balance?network=${network}`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch balance');
+                }
+
+                const data = await response.json();
+
+                resultDiv.innerHTML = `
+                    <div class="balance-card" style="margin-top: 20px;">
+                        <div class="balance-label">Balance</div>
+                        <div class="balance-amount">${data.balance}</div>
+                        <div class="network-badge">${network.toUpperCase()}</div>
+                        <div style="margin-top: 15px; font-size: 0.9em; opacity: 0.9; word-break: break-all;">
+                            ${data.address}
+                        </div>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error" style="margin-top: 20px;">
+                        Failed to check balance: ${error.message}
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Check Balance';
+            }
+        }
+
+        // Send Transaction
+        async function sendTransaction() {
+            const privateKey = document.getElementById('sendPrivateKey').value.trim();
+            const to = document.getElementById('sendTo').value.trim();
+            const amount = document.getElementById('sendAmount').value;
+            const network = document.getElementById('sendNetwork').value;
+
+            if (!privateKey || !to || !amount) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (!confirm(`Send ${amount} to ${to} on ${network}?\n\nThis action cannot be undone!`)) {
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = 'Sending...';
+
+            const resultDiv = document.getElementById('sendResult');
+            resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Processing transaction...</p></div>';
+            resultDiv.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/transaction/send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ privateKey, to, amount, network })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Transaction failed');
+                }
+
+                const data = await response.json();
+
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-top: 20px;">
+                        Transaction sent successfully!
+                    </div>
+                    <div class="wallet-display">
+                        <div class="wallet-item">
+                            <div class="wallet-label">Transaction Hash</div>
+                            <div class="wallet-value">${data.transaction.hash}</div>
+                        </div>
+                        <div class="wallet-item">
+                            <div class="wallet-label">From</div>
+                            <div class="wallet-value">${data.transaction.from}</div>
+                        </div>
+                        <div class="wallet-item">
+                            <div class="wallet-label">To</div>
+                            <div class="wallet-value">${data.transaction.to}</div>
+                        </div>
+                        <div class="wallet-item">
+                            <div class="wallet-label">Amount</div>
+                            <div class="wallet-value">${amount}</div>
+                        </div>
+                    </div>
+                `;
+
+                // Clear sensitive data
+                document.getElementById('sendPrivateKey').value = '';
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="alert alert-error" style="margin-top: 20px;">
+                        Transaction failed: ${error.message}
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Send Transaction';
+            }
+        }
+
+        // Display Wallet Info
+        function displayWallet(wallet, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `
+                <div class="wallet-item">
+                    <div class="wallet-label">Address</div>
+                    <div class="wallet-value">
+                        ${wallet.address}
+                        <button class="copy-btn" onclick="copyToClipboard('${wallet.address}')">Copy</button>
+                    </div>
+                </div>
+                ${wallet.privateKey ? `
+                <div class="wallet-item">
+                    <div class="wallet-label">Private Key</div>
+                    <div class="wallet-value">
+                        ${wallet.privateKey.substring(0, 20)}...
+                        <button class="copy-btn" onclick="copyToClipboard('${wallet.privateKey}')">Copy</button>
+                    </div>
+                </div>
+                ` : ''}
+                ${wallet.mnemonic ? `
+                <div class="wallet-item">
+                    <div class="wallet-label">Mnemonic</div>
+                    <div class="wallet-value">
+                        ${wallet.mnemonic.substring(0, 30)}...
+                        <button class="copy-btn" onclick="copyToClipboard('${wallet.mnemonic}')">Copy</button>
+                    </div>
+                </div>
+                ` : ''}
+            `;
+        }
+
+        // Copy to Clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+    </script>
+</body>
+</html>

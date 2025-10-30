@@ -1,0 +1,2 @@
+[console_scripts]
+audiobot = audiobot.cli:main

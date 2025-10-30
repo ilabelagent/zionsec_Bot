@@ -1,0 +1,25 @@
+#!/usr/bin/expect -f
+set timeout 300
+log_user 1
+set token [expr {[info exists ::env(CODEX_TOKEN)]  $::env(CODEX_TOKEN) : ""}]
+spawn codex login --manual
+expect {
+  -re "(i)https://[^\r\n ]+" {
+    set url $expect_out(0,string)
+    send_user "\n[login] Open this URL in your browser:\n$url\n"
+    exp_continue
+  }
+  -re "(i)(verification code|paste .*code|token)" {
+    if {$token eq ""} {
+      send_user "\n[login] Paste the code/token from the browser and press Enter: "
+      expect_user -re "(.*)\n"
+      set token $expect_out(1,string)
+    }
+    send -- "$token\r"
+    exp_continue
+  }
+  -re "(i)continue\\ \\[y/N\\]" { send -- "y\r"; exp_continue }
+  -re "(i)(success|logged in|complete)" { send_user "\n[login] ✅ Login complete\n" }
+  timeout { send_user "\n[login] ❌ Timeout.\n"; exit 1 }
+  eof { }
+}

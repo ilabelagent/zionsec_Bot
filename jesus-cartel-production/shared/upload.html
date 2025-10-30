@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files - Jesus Cartel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .upload-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-box:hover {
+            border-color: #764ba2;
+            background: #f9fafb;
+        }
+
+        .upload-box.dragging {
+            background: #e8eaf6;
+            border-color: #764ba2;
+        }
+
+        .upload-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-label {
+            display: block;
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            margin: 10px 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .preview {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+
+        .preview-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .preview-icon {
+            font-size: 2em;
+        }
+
+        .preview-info {
+            flex: 1;
+        }
+
+        .preview-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .preview-size {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .copy-btn:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 File Upload Manager</h1>
+            <p class="subtitle">Upload audio files and album artwork</p>
+            <div class="nav">
+                <a href="/admin/admin.html">Dashboard</a>
+                <a href="/admin/publishing.html">Publish Music</a>
+                <a href="/admin/wallet.html">Wallets</a>
+                <a href="/admin/index.html">Releases</a>
+            </div>
+        </div>
+
+        <div id="alerts"></div>
+
+        <div class="upload-section">
+            <!-- Audio Upload -->
+            <div class="card">
+                <h2>🎵 Upload Audio File</h2>
+                <div class="upload-box" id="audioDropZone" onclick="document.getElementById('audioInput').click()">
+                    <div class="upload-icon">🎧</div>
+                    <div class="upload-label">Click or Drop Audio File</div>
+                    <div class="upload-hint">Supported: WAV, MP3, FLAC, M4A, AAC, OGG (Max 100MB)</div>
+                    <input type="file" id="audioInput" accept="audio/*">
+                </div>
+                <div id="audioPreview" class="preview" style="display: none;"></div>
+                <button class="btn btn-primary" id="uploadAudioBtn" style="display: none;" onclick="uploadAudio()">Upload Audio</button>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="card">
+                <h2>🖼️ Upload Album Art</h2>
+                <div class="upload-box" id="imageDropZone" onclick="document.getElementById('imageInput').click()">
+                    <div class="upload-icon">🎨</div>
+                    <div class="upload-label">Click or Drop Image File</div>
+                    <div class="upload-hint">Supported: JPG, PNG, GIF, WEBP (Max 10MB)</div>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
+                <div id="imagePreview" class="preview" style="display: none;"></div>
+                <button class="btn btn-primary" id="uploadImageBtn" style="display: none;" onclick="uploadImage()">Upload Image</button>
+            </div>
+        </div>
+
+        <!-- Create Song Entry -->
+        <div class="card">
+            <h2>📝 Create Song Entry</h2>
+            <p style="color: #666; margin-bottom: 20px;">After uploading files, create a song entry to publish to blockchain</p>
+            <form id="songForm" onsubmit="createSong(event)">
+                <div class="form-group">
+                    <label>Song Title *</label>
+                    <input type="text" id="songTitle" required placeholder="e.g., Amazing Grace">
+                </div>
+                <div class="form-group">
+                    <label>Artist Name *</label>
+                    <input type="text" id="artistName" required placeholder="e.g., John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Audio File Path *</label>
+                    <input type="text" id="audioFilePath" required placeholder="e.g., /audio/123456.wav" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Album Art Path (Optional)</label>
+                    <input type="text" id="albumArtPath" placeholder="e.g., /images/123456.jpg" readonly>
+                </div>
+                <button type="submit" class="btn btn-success">Create Song Entry</button>
+            </form>
+        </div>
+
+        <!-- Uploaded Files -->
+        <div class="card">
+            <h2>📂 Recently Uploaded Files</h2>
+            <div id="fileList" class="file-list">
+                <p style="color: #666;">No files uploaded yet</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        let currentAudioFile = null;
+        let currentImageFile = null;
+        let uploadedFiles = [];
+
+        // Audio file handling
+        const audioInput = document.getElementById('audioInput');
+        const audioDropZone = document.getElementById('audioDropZone');
+        const audioPreview = document.getElementById('audioPreview');
+        const uploadAudioBtn = document.getElementById('uploadAudioBtn');
+
+        audioInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                currentAudioFile = e.target.files[0];
+                showAudioPreview(currentAudioFile);
+            }
+        });
+
+        // Image file handling
+        const imageInput = document.getElementById('imageInput');
+        const imageDropZone = document.getElementById('imageDropZone');
+        const imagePreview = document.getElementById('imagePreview');
+        const uploadImageBtn = document.getElementById('uploadImageBtn');
+
+        imageInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                currentImageFile = e.target.files[0];
+                showImagePreview(currentImageFile);
+            }
+        });
+
+        // Drag and drop for audio
+        audioDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            audioDropZone.classList.add('dragging');
+        });
+
+        audioDropZone.addEventListener('dragleave', () => {
+            audioDropZone.classList.remove('dragging');
+        });
+
+        audioDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            audioDropZone.classList.remove('dragging');
+            if (e.dataTransfer.files.length > 0) {
+                currentAudioFile = e.dataTransfer.files[0];
+                showAudioPreview(currentAudioFile);
+            }
+        });
+
+        // Drag and drop for image
+        imageDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageDropZone.classList.add('dragging');
+        });
+
+        imageDropZone.addEventListener('dragleave', () => {
+            imageDropZone.classList.remove('dragging');
+        });
+
+        imageDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageDropZone.classList.remove('dragging');
+            if (e.dataTransfer.files.length > 0) {
+                currentImageFile = e.dataTransfer.files[0];
+                showImagePreview(currentImageFile);
+            }
+        });
+
+        function showAudioPreview(file) {
+            audioPreview.style.display = 'block';
+            uploadAudioBtn.style.display = 'block';
+            audioPreview.innerHTML = `
+                <div class="preview-item">
+                    <div class="preview-icon">🎵</div>
+                    <div class="preview-info">
+                        <div class="preview-name">${file.name}</div>
+                        <div class="preview-size">${formatFileSize(file.size)}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showImagePreview(file) {
+            imagePreview.style.display = 'block';
+            uploadImageBtn.style.display = 'block';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.innerHTML = `
+                    <div class="preview-item">
+                        <img src="${e.target.result}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+                        <div class="preview-info">
+                            <div class="preview-name">${file.name}</div>
+                            <div class="preview-size">${formatFileSize(file.size)}</div>
+                        </div>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function uploadAudio() {
+            if (!currentAudioFile) return;
+
+            const formData = new FormData();
+            formData.append('audio', currentAudioFile);
+
+            uploadAudioBtn.disabled = true;
+            uploadAudioBtn.textContent = 'Uploading...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/upload/audio`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Audio uploaded successfully!', 'success');
+                    document.getElementById('audioFilePath').value = data.path;
+                    uploadedFiles.push({ type: 'audio', ...data });
+                    updateFileList();
+                    currentAudioFile = null;
+                    audioPreview.style.display = 'none';
+                    uploadAudioBtn.style.display = 'none';
+                    audioInput.value = '';
+                } else {
+                    showAlert('Upload failed: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Upload error: ' + error.message, 'error');
+            } finally {
+                uploadAudioBtn.disabled = false;
+                uploadAudioBtn.textContent = 'Upload Audio';
+            }
+        }
+
+        async function uploadImage() {
+            if (!currentImageFile) return;
+
+            const formData = new FormData();
+            formData.append('image', currentImageFile);
+
+            uploadImageBtn.disabled = true;
+            uploadImageBtn.textContent = 'Uploading...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/upload/image`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Image uploaded successfully!', 'success');
+                    document.getElementById('albumArtPath').value = data.path;
+                    uploadedFiles.push({ type: 'image', ...data });
+                    updateFileList();
+                    currentImageFile = null;
+                    imagePreview.style.display = 'none';
+                    uploadImageBtn.style.display = 'none';
+                    imageInput.value = '';
+                } else {
+                    showAlert('Upload failed: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Upload error: ' + error.message, 'error');
+            } finally {
+                uploadImageBtn.disabled = false;
+                uploadImageBtn.textContent = 'Upload Image';
+            }
+        }
+
+        async function createSong(event) {
+            event.preventDefault();
+
+            const songData = {
+                title: document.getElementById('songTitle').value,
+                artist: document.getElementById('artistName').value,
+                audioFile: document.getElementById('audioFilePath').value,
+                albumArt: document.getElementById('albumArtPath').value || undefined
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/api/songs/create`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(songData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert(`Song "${data.song.title}" created successfully! ID: ${data.song.id}`, 'success');
+                    document.getElementById('songForm').reset();
+                } else {
+                    showAlert('Failed to create song: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            }
+        }
+
+        function updateFileList() {
+            const fileList = document.getElementById('fileList');
+
+            if (uploadedFiles.length === 0) {
+                fileList.innerHTML = '<p style="color: #666;">No files uploaded yet</p>';
+                return;
+            }
+
+            fileList.innerHTML = uploadedFiles.map(file => `
+                <div class="file-item">
+                    <div>
+                        <div style="font-weight: bold;">${file.filename}</div>
+                        <div style="color: #666; font-size: 0.9em;">${file.path} (${formatFileSize(file.size)})</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${file.path}')">Copy Path</button>
+                </div>
+            `).join('');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            showAlert('Path copied to clipboard!', 'success');
+        }
+
+        function showAlert(message, type) {
+            const alerts = document.getElementById('alerts');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alerts.appendChild(alert);
+
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>

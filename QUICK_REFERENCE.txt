@@ -1,0 +1,94 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║        QUICK REFERENCE - Jesus Cartel & Cyber Lab                ║
+║                  Lightning AI Studio Access                      ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📍 STUDIO LOCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Path:     /teamspace/studios/this_studio/
+  Studio:   this_studio
+  Owner:    ilabeliman
+  Host:     cs-01k7zf995rrn6p9a7jdrshxhcv
+
+🚀 START SERVICES (Copy & Paste)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Jesus Cartel (Music Publishing):
+  /teamspace/studios/this_studio/start-jesus-cartel.sh
+
+  Cyber Lab (Security Analysis):
+  /teamspace/studios/this_studio/start-cyber-lab.sh
+
+🌐 WEB ACCESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. Visit: https://lightning.ai/
+  2. Click: Studios → this_studio
+  3. Open: Terminal or Ports tab
+
+  Services:
+  - Jesus Cartel: Port 3000
+  - Cyber Lab:    Port 3001
+
+📂 SERVICE LOCATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Jesus Cartel:
+  /teamspace/studios/this_studio/jesus-cartel-production/
+
+  Cyber Lab:
+  /teamspace/studios/this_studio/cyber-lab-production/
+
+  Valifi (Original):
+  /teamspace/studios/this_studio/valifi/
+
+📚 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  STUDIO_LOCATION_GUIDE.md  - Full location guide
+  FINAL_HANDOFF.md          - Complete handoff summary
+  DEPLOYMENT_COMPLETE.md    - Full deployment details
+  QUICK_ACCESS_GUIDE.md     - Fast-start instructions
+
+  Read any file:
+  cat /teamspace/studios/this_studio/[filename]
+
+🔧 USEFUL COMMANDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Go to studio:
+  cd /teamspace/studios/this_studio/
+
+  Where am I?
+  pwd
+
+  List services:
+  ls -la /teamspace/studios/this_studio/ | grep production
+
+  Check username:
+  whoami
+
+  View this reference:
+  cat /teamspace/studios/this_studio/QUICK_REFERENCE.txt
+
+✅ READY TO USE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Both services are DEPLOYED and READY TO START!
+
+  Jesus Cartel Features:
+  - NFT minting (5 blockchains)
+  - ERC-20 token creation
+  - Release management
+  - Stream analytics
+
+  Cyber Lab Features:
+  - Smart contract scanning
+  - Penetration testing
+  - Wallet security audits
+  - Phishing detection
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

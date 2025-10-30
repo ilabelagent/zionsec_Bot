@@ -1,0 +1,209 @@
+Master ComfyUI Workflow for a 15–18‑minute
+Medley Visualizer
+Introduction
+ComfyUI is an open‑source node‑based application for generative AI that lets you build AI workflows by
+visually connecting nodes on a canvas . Workflows can be saved and re‑used, and exported images or
+videos carry metadata so others can instantly rebuild the full workflow . This flexibility makes
+ComfyUI a good choice for creating dynamic music visualizers where each part of a song can have its own
+prompt, style and animation.
+This document summarises our conversation about producing a medley called “INSANE” using a single
+looped beat (~2.5–3 min per loop) and five artists. The medley structure uses six loops: the lead artist
+appears three times and four featured artists appear once each. The final video should run roughly 15–
+18 minutes and each segment should have different visuals (e.g., dark forest, sunrise city, battlefield, open
+field, thunderstorm and ocean‑walk scenes). Below is a master workflow for ComfyUI to automate visual
+generation for each segment and combine them into a single medley visualizer.
+Required Plugins and Models
+ComfyUI uses modular nodes; additional plugins provide video and TTS capabilities. The master workflow
+uses the following components:
+Component Purpose Installation / Notes
+WanVideo plugin
+Provides text‑to‑video
+generation (Wan 2.x models)
+and nodes like
+WanVideoModelLoader ,
+WanVideoTextEncode ,
+WanVideoSampler ,
+WanVideoDecode . The plugin
+converts a base image into a
+short animation video .
+Install via ComfyUI Manager; download
+Wan 2.x models (e.g.,
+wan2.1_i2v_480p_14B_bf16_Comfy-
+Org.safetensors ) and place them in
+ComfyUI/models/wanvideo/ . Requires
+~16 GB GPU memory and the
+VideoHelperSuite plugin .
+1
+2
+3
+4
+1
+Component Purpose Installation / Notes
+Flux/Stable
+Diffusion model
+Generates high‑quality base
+images from text prompts. For
+example, the Flux 1 model (or
+any SDXL model) can be loaded
+via UNETLoader ,
+CLIPTextEncode ,
+SamplerCustomAdvanced
+and VAEDecode .
+Use models suited to your desired art style
+(e.g., realistic, clay‑style, anime). LoRA
+fine‑tunes can be loaded with LoraLoader
+if needed .
+VideoHelperSuite
+plugin
+Provides nodes like
+VHS_VideoCombine which
+combine frame sequences into
+MP4 videos .
+Install via ComfyUI Manager; ensure the
+plugin is up‑to‑date for compatibility with
+WanVideo .
+(Optional) Sonic
+Diffusion and
+NTCosyVoice
+plugins
+Sonic Diffusion is an
+image‑to‑video model based on
+Stable Video Diffusion and can
+integrate audio conditioning
+. NTCosyVoice generates
+synthetic speech and
+voice‑cloned TTS .
+Useful if you want the visuals to react to
+audio amplitude; requires additional models
+(svd_xt_1_1.safetensors and unet.pth) and at
+least 8 GB VRAM .
+Medley Structure and Prompt Design
+Our medley loops the same beat six times; each loop corresponds to a specific part of the narrative. The
+prompts below can be adapted for your style. Provide creative descriptions that evoke mood, colour and
+motion. Each video segment should be 2.5–3 minutes long (enough to match the audio loop). Adjust
+frames and steps in the WanVideo sampler to produce smooth movement without overwhelming your
+GPU.
+Segment Artist &
+Theme Example Prompt Notes
+1
+Lead Take 1 –
+The Opening
+Cry
+“A dark forest bathed in soft golden light
+breaking through the trees. Tears fall into
+glowing water as the camera slowly zooms on a
+lone figure standing in awe; deep blue, purple
+and golden tones.”
+Use darker colours and
+slow movement to
+evoke vulnerability and
+brokenness.
+2
+Artist B –
+Joyful
+Encounter
+“City rooftops at sunrise with neon gospel
+graffiti. Shadowed dancers on a rooftop move
+joyfully as sunlight flares across the skyline;
+vibrant reds and oranges.”
+Increase motion;
+emphasise vibrant city
+energy and hope.
+5
+6
+7
+8
+9
+10
+9
+2
+Set guidance strength (e.g., 3.5) and sampling steps (e.g., 30–40) for a high‑quality 1024×1024 image
+.
+Image‑to‑Video group (I2V) – convert the image into a short animation:
+Connect the generated image to WanVideoImageClipEncode .
+Use WanVideoModelLoader to load the Wan model and WanVideoTextEncode for the
+animation prompt (e.g., “keep the camera steady, animate the light and particles …”) .
+Configure WanVideoSampler with appropriate frames and steps (e.g., frames = 90–150, steps = 6).
+Higher frames create longer videos but require more GPU memory .
+Use WanVideoDecode to decode latent frames and send them to VHS_VideoCombine to
+produce an MP4 video .
+Save outputs – specify an output filename for each segment (e.g., segment1.mp4 ).
+3. Duplicate the segment template for all six parts
+After testing one segment, duplicate the node group (select all nodes and copy) and paste it five more times
+on the ComfyUI canvas. For each duplicate:
+Change the positive prompt to match the appropriate segment (see table above).
+Adjust the animation prompt for the desired movement.
+Modify the seed if you want variation.
+Set output file names ( segment2.mp4 , segment3.mp4 , etc.).
+4. Combine the segments into a single medley video
+ComfyUI’s VideoHelperSuite can merge videos, but for long medleys it may be more efficient to assemble
+the final video with an external tool like ffmpeg. Example command (run in a terminal after all segments are
+generated):
+ffmpeg -i "concat:segment1.mp4|segment2.mp4|segment3.mp4|segment4.mp4|
+segment5.mp4|segment6.mp4" -c copy medley_visualizer.mp4
+Alternatively, you can use the CombineVideos node (provided by VideoHelperSuite) by connecting each
+VHS_VideoCombine output to it and specifying the order.
+5. Add the audio track
+Import the medley audio file (the beat loop with vocals) into a video editing tool or ffmpeg. Align it with the
+combined video and ensure the final video length matches the audio (trim or pad the video if necessary).
+Example ffmpeg command:
+4.
+13
+5.
+6.
+7.
+14
+8.
+4
+9.
+14
+10.
+•
+•
+•
+•
+4
+ffmpeg -i medley_visualizer.mp4 -i medley_audio.wav -c:v copy -c:a aac -
+shortest INSANE_Medley.mp4
+6. Save and reuse the workflow
+Once the node graph is complete, use the Save workflow option in ComfyUI. This exports the entire graph,
+including model and node settings, so that future medleys can be generated by updating the prompts and
+audio. Because ComfyUI allows saving and reusing entire workflows , you can treat this as a template
+for all your medleys.
+Optional: Using Sonic Diffusion for Audio‑Reactive Effects
+If you want the visuals to respond to the music’s intensity, integrate Sonic Diffusion. Sonic Diffusion
+extends static images into video frames and can incorporate audio conditioning . A typical Sonic
+Diffusion workflow uses nodes such as ImageOnlyCheckpointLoader , SONICTLoader , LoadImage ,
+LoadAudio , SONIC_PreData , SONICSampler and VHS_VideoCombine . You would:
+Create or load an image representing your segment.
+Use LoadAudio to input the corresponding audio segment.
+Set frame count (e.g., 25 for shorter loops) and conditioning strength (0.5–0.8).
+Generate frames via SONICSampler and combine them with VHS_VideoCombine .
+Sonic Diffusion requires additional models (e.g., svd_xt_1_1.safetensors and unet.pth ) and at least
+8 GB VRAM . It can add subtle motion and emotional cues synced to the beat, especially in intros/outros.
+Conclusion
+By leveraging ComfyUI’s node‑based design and the WanVideo plugin’s ability to turn images into
+animations , you can automate the creation of a long medley visualizer. Define clear prompts for each
+section, generate high‑resolution images, animate them into videos, and combine the results with your
+audio track. Once configured, the workflow becomes a reusable template for any future medley: simply
+swap the prompts and audio to produce new versions. The final result is a 15–18‑minute video journey that
+visually matches the emotional arc of your music.
+2
+9
+15
+1.
+2.
+3.
+4. 16
+9
+1
+3
+5
+ComfyUI | Generate video, images, 3D, audio with AI
+https://www.comfy.org/
+Create Stunning Animated Videos with Ease: A Flux.1 and WanVideo Tutorial
+- ComfyUI.org
+https://comfyui.org/en/create-stunning-animated-videos-with-flux1-and-wanvideo
+Bring Your Images to Life: AI-Driven Video Generation with Sonic Diffusion and
+NTCosyVoice - ComfyUI.org
+https://comfyui.org/en/ai-driven-video-generation-with-sonic-diffusion

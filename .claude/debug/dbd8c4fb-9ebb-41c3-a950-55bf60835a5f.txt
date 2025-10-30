@@ -1,0 +1,121 @@
+[DEBUG] Watching for changes in setting files /teamspace/studios/this_studio/jesus-cartel-production/.claude/settings.local.json...
+[DEBUG] Applying permission update: Adding 16 allow rule(s) to destination 'localSettings': ["Bash(npm run build:*)","Bash(npm start)","Bash(curl:*)","Bash(python3:*)","Bash(node -e:*)","Bash(npm run db:push:*)","Bash(lsof:*)","Bash(netstat:*)","Bash(ss -tlnp:*)","Bash(kill:*)","Bash(echo:*)","Bash(xargs kill:*)","Bash(npm install:*)","Bash(awk:*)","Read(//teamspace/studios/this_studio/**)","Read(//teamspace/studios/**)"]
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/teamspace/studios/this_studio/.claude/skills, project=/teamspace/studios/this_studio/jesus-cartel-production/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Creating shell snapshot for zsh (zsh)
+[DEBUG] Looking for shell config file: /teamspace/studios/this_studio/.zshrc
+[DEBUG] Snapshots directory: /teamspace/studios/this_studio/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /teamspace/studios/this_studio/.claude/shell-snapshots/snapshot-zsh-1761810982655-p6wgr0.sh
+[DEBUG] Shell binary exists: false
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/dbd8c4fb-9ebb-41c3-a950-55bf60835a5f-agent-dbd8c4fb-9ebb-41c3-a950-55bf60835a5f.json.tmp.417509.1761810982665
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/dbd8c4fb-9ebb-41c3-a950-55bf60835a5f-agent-dbd8c4fb-9ebb-41c3-a950-55bf60835a5f.json.tmp.417509.1761810982665 to /teamspace/studios/this_studio/.claude/todos/dbd8c4fb-9ebb-41c3-a950-55bf60835a5f-agent-dbd8c4fb-9ebb-41c3-a950-55bf60835a5f.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/dbd8c4fb-9ebb-41c3-a950-55bf60835a5f-agent-dbd8c4fb-9ebb-41c3-a950-55bf60835a5f.json written atomically
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/x64-linux/rg)
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810982870
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37211 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810982870 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810982883
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37211 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810982883 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RRgS7VnpRkMo1DkML"}
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810983002
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37211 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810983002 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[ERROR] Error streaming, falling back to non-streaming mode: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RRhvFCqxnceecZzkx"}
+[ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RSeUZwu77SQF4ekth"}
+[ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RSeUZwu77SQF4ekth"}
+    at D4.generate (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:203:83274)
+    at uy.makeStatusError (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:357:2117)
+    at uy.makeRequest (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:357:5330)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async OtA.model (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:18888)
+    at async OtA (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:2693:39781)
+    at async lb2 (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:19040)
+    at async file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:13007
+    at async Jo1 (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:4492)
+    at async p4A (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:12977)
+[DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+[ERROR] Error in non-streaming fallback: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RScjfEPFAZyqdzQxm"}
+[ERROR] Error: Error: 429 {"type":"error","error":{"type":"rate_limit_error","message":"This request would exceed your account's rate limit. Please try again later."},"request_id":"req_011CUd2RScjfEPFAZyqdzQxm"}
+    at D4.generate (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:203:83274)
+    at uy.makeStatusError (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:357:2117)
+    at uy.makeRequest (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:357:5330)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async OtA.model (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:18888)
+    at async OtA (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:2693:39781)
+    at async lb2 (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:19040)
+    at async file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:13007
+    at async Jo1 (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:4492)
+    at async p4A (file:///system/conda/node/nvm/versions/node/v22.14.0/lib/node_modules/@anthropic-ai/claude-code/cli.js:3355:12977)
+[DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+[DEBUG] Shell snapshot created successfully (173210 bytes)
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989542
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37690 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989542 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989561
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37690 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989561 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Getting matching hook commands for SessionStart with query: startup
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989638
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37585 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989638 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989643
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37585 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989643 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] performStartupChecks called
+[DEBUG] Starting background plugin installations
+[DEBUG] performBackgroundPluginInstallations called
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989672
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37690 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761810989672 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[DEBUG] Getting matching hook commands for SessionEnd with query: undefined
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+[DEBUG] Cleaned up session snapshot: /teamspace/studios/this_studio/.claude/shell-snapshots/snapshot-zsh-1761810982655-p6wgr0.sh
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.417509.1761813877792
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38112 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.417509.1761813877792 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically

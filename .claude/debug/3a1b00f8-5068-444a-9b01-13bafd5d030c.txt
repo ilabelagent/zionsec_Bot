@@ -1,0 +1,922 @@
+[DEBUG] Watching for changes in setting files /teamspace/studios/this_studio/.claude/settings.local.json...
+[DEBUG] Applying permission update: Adding 9 allow rule(s) to destination 'localSettings': ["Bash(find:*)","Bash(unzip:*)","Bash(tree:*)","Bash(node --version:*)","Bash(npm:*)","Bash(pip install:*)","Bash(python3:*)","Bash(curl:*)","Bash(pkill:*)"]
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Loading skills from directories: managed=/etc/claude-code/.claude/skills, user=/teamspace/studios/this_studio/.claude/skills, project=/teamspace/studios/this_studio/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Creating shell snapshot for zsh (zsh)
+[DEBUG] Looking for shell config file: /teamspace/studios/this_studio/.zshrc
+[DEBUG] Snapshots directory: /teamspace/studios/this_studio/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /teamspace/studios/this_studio/.claude/shell-snapshots/snapshot-zsh-1761837452033-zk63cw.sh
+[DEBUG] Shell binary exists: false
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837452044
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837452044 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452156
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452156 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452366
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452366 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452375
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837452375 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Shell snapshot created successfully (173733 bytes)
+[DEBUG] Stream started - received first chunk
+[DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455372
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455372 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping SessionStart:startup hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455533
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37577 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455533 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455546
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37577 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455546 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455551
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37577 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455551 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] performStartupChecks called
+[DEBUG] Trust not accepted for current directory - skipping plugin installations
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455587
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837455587 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[DEBUG] Stream started - received first chunk
+[DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Added snapshot for 2ca2a475-75c9-4744-b17c-8b817276cc4c, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: WebFetch
+[DEBUG] Skipping PreToolUse:WebFetch hook execution - workspace trust not accepted
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 1 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761837507704
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 340 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761837507704 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["WebFetch(domain:drive.google.com)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Stream started - received first chunk
+[DEBUG] Skipping PostToolUse:WebFetch hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522394
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522394 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping Stop hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522463
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37682 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522463 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522470
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37841 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761837522470 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message a1063ce5-b3ec-4669-878c-bc6341bf1d26
+[DEBUG] FileHistory: Added snapshot for a1063ce5-b3ec-4669-878c-bc6341bf1d26, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837569675
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 429 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837569675 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] No hook environment files found
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "rm:*"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "gdown:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 2 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761837651489
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 383 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761837651489 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 2 allow rule(s) to destination 'localSettings': ["Bash(rm:*)","Bash(gdown:*)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837752288
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 431 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761837752288 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: BashOutput
+[DEBUG] Skipping PreToolUse:BashOutput hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:BashOutput hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: KillShell
+[DEBUG] Skipping PreToolUse:KillShell hook execution - workspace trust not accepted
+[DEBUG] BackgroundShell 5f6475 kill requested
+[DEBUG] Skipping PostToolUse:KillShell hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Detected change to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] Replacing all allow rules for destination 'localSettings' with 45 rule(s): ["Bash(node:*)","Bash(git fetch:*)","Bash(cat:*)","Bash(npm run check)","Bash(timeout 10 npm run dev:*)","Bash(chmod:*)","Bash(git add:*)","Bash(git reset:*)","Bash(git apply:*)","Bash(git commit -m \"$(cat <<''EOF''\nFix TypeScript errors and update .gitignore\n\nTypeScript Fixes:\n- landing.tsx: Fixed missing closing div tag in Jesus Cartel releases section  \n- wallet-connect.tsx: Fixed apiRequest call signature (method, url, data)\n- spectrum-plans.tsx: Added proper TypeScript interfaces for User, SpectrumPosition, SpectrumPlan, SpectrumEarning\n- tithing.tsx: Added proper TypeScript interfaces for Charity, TithingConfig, TithingImpact, TithingHistory, TaxReport\n- trading-bots.tsx: Fixed conditional rendering to use ternary operator\n\n.gitignore Updates:\n- Exclude .next/ and blue_elites/.next/ (build cache)\n- Exclude agents/training/checkpoints/ and *.ckpt (large ML models)\n- Exclude logs, session files, and Python cache\n- Exclude .env files\n\nAll TypeScript type checking errors resolved.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")","Bash(git push:*)","Bash(npm run build:*)","Bash(npm start)","Bash(env)","Bash(pg_isready:*)","Bash(docker run:*)","Bash(postgres:16-alpine)","Bash(docker exec:*)","Bash(npm run db:push:*)","Bash(yes:*)","Bash(killall drizzle-kit:*)","Bash(npm run dev:*)","Bash(curl:*)","Bash(npx drizzle-kit generate:pg)","Bash(npx drizzle-kit:*)","Bash(netstat:*)","Bash(ss:*)","Bash(/dev/null)","Bash(/tmp/valifi_monitor.sh)","Bash(git commit:*)","Bash(timeout 20 npm run dev:*)","Bash(printf:*)","Bash(killall:*)","Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YjIxY2UyMS1iNGNjLTRiOWItYWU0My03NWZmMzdlN2VhNzEiLCJpYXQiOjE3NjEzOTIwOTcsImV4cCI6MTc2MTM5NTY5N30.lMtAPRX70NDjdu-aVH-hNdq8F6GziZ4ZhJ3gxFericE\")","Bash(tsx:*)","Bash(npx tsx:*)","Bash(source .env)","Bash(DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/valifi\" npx tsx:*)","Bash(ADMIN_TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjY5Njk3My02YmE5LTRjZTAtYTZmMy03MTQ4ZjE4NWRkMzYiLCJpYXQiOjE3NjEzOTM0NjEsImV4cCI6MTc2MTM5NzA2MX0.hctwqdEBks64ZjOC_Omjq9QwqeCLJV3601Et6lH8e0o\")","Bash(git log:*)","Bash(python3:*)","Bash(psql:*)","Bash(DATABASE_URL=\"postgresql://postgres:postgres@localhost:5432/valifi\" npx drizzle-kit push:*)","Bash(pkill:*)","Bash(npm install:*)"]
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838151764
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 433 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838151764 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838161379
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838161379 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174118
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37841 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174118 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping Stop hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174157
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37841 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174157 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174167
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37964 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838174167 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message 377058a0-7531-4218-a08e-2551b95fe519
+[DEBUG] FileHistory: Added snapshot for 377058a0-7531-4218-a08e-2551b95fe519, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838525395
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 585 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838525395 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "mv:*"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "rmdir:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838584220
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 37964 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838584220 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838584231
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38108 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838584231 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message d841bd14-06ab-4ddb-aca9-d37a1461f824
+[DEBUG] FileHistory: Added snapshot for d841bd14-06ab-4ddb-aca9-d37a1461f824, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838611073
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 606 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838611073 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838637285
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838637285 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663366
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38108 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663366 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping Stop hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663393
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38108 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663393 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663398
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38244 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838663398 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message 1bcdf294-8196-4230-b633-b7e65dcd0a26
+[DEBUG] FileHistory: Added snapshot for 1bcdf294-8196-4230-b633-b7e65dcd0a26, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838805624
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 593 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838805624 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "rm:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838820837
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38244 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838820837 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838820844
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38324 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838820844 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message aaa5b321-6b0c-4c8f-9524-1317f69a21ea
+[DEBUG] FileHistory: Added snapshot for aaa5b321-6b0c-4c8f-9524-1317f69a21ea, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838865268
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 738 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838865268 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "rm:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838877059
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38324 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838877059 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838877070
+[DEBUG] Preserving file permissions: 100744
+[DEBUG] Temp file written successfully, size: 38478 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude.json.tmp.4126.1761838877070 to /teamspace/studios/this_studio/.claude.json
+[DEBUG] File /teamspace/studios/this_studio/.claude.json written atomically
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skipping UserPromptSubmit hook execution - workspace trust not accepted
+[DEBUG] FileHistory: Making snapshot for message af14ba41-de7d-48a0-b02c-6ab02b741ea3
+[DEBUG] FileHistory: Added snapshot for af14ba41-de7d-48a0-b02c-6ab02b741ea3, tracking 0 files
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "rm:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 1 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761838899891
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2816 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761838899891 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Bash(rm:*)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838910743
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 740 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838910743 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838928207
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 742 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761838928207 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "mv:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 1 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761838990414
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2836 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761838990414 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Bash(mv:*)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "rmdir:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 1 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761839054693
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2859 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761839054693 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Bash(rmdir:*)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761839061432
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 864 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761839061432 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Read
+[DEBUG] Skipping PreToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Read hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Edit
+[DEBUG] Skipping PreToolUse:Edit hook execution - workspace trust not accepted
+[DEBUG] Permission suggestions for Edit: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Applying permission update: Setting mode to 'acceptEdits'
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] FileHistory: Tracked file modification for /teamspace/studios/this_studio/.gitignore
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.gitignore.tmp.4126.1761839074358
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 561 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.gitignore.tmp.4126.1761839074358 to /teamspace/studios/this_studio/.gitignore
+[DEBUG] File /teamspace/studios/this_studio/.gitignore written atomically
+[DEBUG] Skipping PostToolUse:Edit hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: TodoWrite
+[DEBUG] Skipping PreToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761839080937
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 866 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json.tmp.4126.1761839080937 to /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/todos/3a1b00f8-5068-444a-9b01-13bafd5d030c-agent-3a1b00f8-5068-444a-9b01-13bafd5d030c.json written atomically
+[DEBUG] Skipping PostToolUse:TodoWrite hook execution - workspace trust not accepted
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "git init:*"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "git branch:*"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+[DEBUG] Skipping Notification hook execution - workspace trust not accepted
+[DEBUG] Persisting permission update: addRules to source 'localSettings'
+[DEBUG] Persisting 2 allow rule(s) to localSettings
+[DEBUG] Writing to temp file: /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761839161993
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 2913 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /teamspace/studios/this_studio/.claude/settings.local.json.tmp.4126.1761839161993 to /teamspace/studios/this_studio/.claude/settings.local.json
+[DEBUG] File /teamspace/studios/this_studio/.claude/settings.local.json written atomically
+[DEBUG] Applying permission update: Adding 2 allow rule(s) to destination 'localSettings': ["Bash(git init:*)","Bash(git branch:*)"]
+[DEBUG] AutoUpdaterWrapper: Installation type: npm-global, using native: false
+[DEBUG] Skipping PostToolUse:Bash hook execution - workspace trust not accepted
+[DEBUG] Hooks: getAsyncHookResponseAttachments called
+[DEBUG] Hooks: checkForNewResponses called
+[DEBUG] Hooks: Found 0 total hooks in registry
+[DEBUG] Hooks: checkForNewResponses returning 0 responses
+[DEBUG] Skills and commands included in Skill tool:
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] executePreToolHooks called for tool: Bash
+[DEBUG] Skipping PreToolUse:Bash hook execution - workspace trust not accepted

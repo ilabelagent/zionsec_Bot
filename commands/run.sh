@@ -1,0 +1,1 @@
+bash scripts/run_influencer_notebook.sh

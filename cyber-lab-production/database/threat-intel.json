@@ -1,0 +1,15 @@
+[
+  {
+    "id": "THREAT_1761053234189_b6uw37",
+    "timestamp": "2025-10-21T13:27:14.189Z",
+    "threatType": "Phishing",
+    "indicators": [
+      "Non-HTTPS connection",
+      "IP address instead of domain",
+      "Suspicious keywords in URL"
+    ],
+    "source": "CyberLab Phishing Detector",
+    "confidence": 90,
+    "activeThreats": 1
+  }
+]
