@@ -16,6 +16,8 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('cyberlab')">🛡️ CyberLab</button>
             <button class="tab-btn" onclick="switchTab('banking')">🏦 Banking</button>
+            <button class="tab-btn" onclick="switchTab('spoofing')">🎣 Spoofing Lab</button>
+            <button class="tab-btn" onclick="switchTab('holysiege')">⚔️ Holy Siege</button>
             <button class="tab-btn" onclick="switchTab('guardian')">👼 Guardian Angel</button>
             <button class="tab-btn" onclick="switchTab('attacks')">🚨 Attack Monitor</button>
             <button class="tab-btn" onclick="switchTab('crypter')">🔐 Crypter/FUD</button>
@@ -478,6 +480,270 @@
                         <button onclick="getMemories()">Load Memories</button>
                     </div>
                     <div id="mem-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPOOFING LAB TAB -->
+        <div id="spoofing-tab" class="tab-content">
+            <div class="grid">
+                <!-- Template Gallery -->
+                <div class="card full-width">
+                    <h2>🎣 Phishing Template Gallery</h2>
+                    <p style="color: #10b981; margin-bottom: 15px;">✝️ For authorized security awareness training only</p>
+                    <div class="form-group">
+                        <select id="template-category">
+                            <option value="">All Categories</option>
+                            <option value="email">📧 Email</option>
+                            <option value="sms">💬 SMS</option>
+                            <option value="webpage">🌐 Webpage</option>
+                            <option value="voice">📞 Voice</option>
+                            <option value="qr_code">🔳 QR Code</option>
+                        </select>
+                        <select id="template-difficulty">
+                            <option value="">All Difficulties</option>
+                            <option value="beginner">🟢 Beginner</option>
+                            <option value="intermediate">🟡 Intermediate</option>
+                            <option value="advanced">🟠 Advanced</option>
+                            <option value="expert">🔴 Expert</option>
+                        </select>
+                        <button onclick="loadTemplates()">📚 Load Templates</button>
+                    </div>
+                    <div id="template-gallery" class="result" style="max-height: 400px; overflow-y: auto;"></div>
+                </div>
+
+                <!-- Template Customization -->
+                <div class="card full-width">
+                    <h2>✏️ Customize Template</h2>
+                    <div class="form-group">
+                        <select id="customize-template-id">
+                            <option value="">Select a template first...</option>
+                        </select>
+                        <button onclick="showCustomizationForm()">📝 Show Customization Form</button>
+                    </div>
+                    <div id="customization-form" style="margin-top: 15px; display: none;">
+                        <div id="template-variables"></div>
+                        <button onclick="customizeTemplate()">🎨 Generate Customized Content</button>
+                    </div>
+                    <div id="customized-result" class="result"></div>
+                </div>
+
+                <!-- Campaign Management -->
+                <div class="card full-width">
+                    <h2>📊 Awareness Training Campaigns</h2>
+                    <div class="form-group">
+                        <button onclick="showCampaignForm()">➕ Create New Campaign</button>
+                        <button onclick="loadCampaigns()">📋 Load Campaigns</button>
+                    </div>
+                    <div id="campaign-form" style="margin-top: 15px; display: none;">
+                        <h3>New Campaign</h3>
+                        <input type="text" id="campaign-name" placeholder="Campaign Name">
+                        <select id="campaign-template">
+                            <option value="">Select Template...</option>
+                        </select>
+                        <input type="text" id="campaign-audience" placeholder="Target Audience (e.g., All Employees)">
+                        <select id="campaign-purpose">
+                            <option value="training">Training</option>
+                            <option value="awareness">Awareness</option>
+                            <option value="assessment">Assessment</option>
+                        </select>
+                        <input type="text" id="campaign-creator" placeholder="Created By">
+                        <button onclick="createCampaign()">🚀 Launch Campaign</button>
+                    </div>
+                    <div id="campaigns-list" class="result"></div>
+                </div>
+
+                <!-- Spoofing Analysis -->
+                <div class="card full-width">
+                    <h2>🔍 Spoofing Technique Analysis</h2>
+                    <div class="form-group">
+                        <input type="text" id="spoof-target" placeholder="Target (email, domain, number, etc.)">
+                        <select id="spoof-type">
+                            <option value="email">📧 Email Spoofing</option>
+                            <option value="domain">🌐 Domain Spoofing</option>
+                            <option value="caller_id">📞 Caller ID Spoofing</option>
+                            <option value="sms">💬 SMS Spoofing</option>
+                            <option value="ip">🖥️ IP Spoofing</option>
+                        </select>
+                        <input type="text" id="spoof-original" placeholder="Original Identity">
+                        <input type="text" id="spoof-spoofed" placeholder="Spoofed Identity">
+                        <input type="number" id="spoof-difficulty" placeholder="Detection Difficulty (0-100)" min="0" max="100">
+                        <button onclick="analyzeSpoofing()">🔎 Analyze</button>
+                    </div>
+                    <div id="spoofing-result" class="result"></div>
+                </div>
+
+                <!-- Training Report -->
+                <div class="card full-width">
+                    <h2>📈 Training Effectiveness Report</h2>
+                    <div class="form-group">
+                        <select id="report-campaign">
+                            <option value="">Select Campaign...</option>
+                        </select>
+                        <button onclick="generateReport()">📊 Generate Report</button>
+                    </div>
+                    <div id="report-result" class="result"></div>
+                </div>
+
+                <!-- Educational Resources -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>🎓 Phishing Awareness Education</h2>
+                    <div style="line-height: 1.8;">
+                        <h3 style="color: #60a5fa; margin-top: 0;">Common Red Flags:</h3>
+                        <ul style="color: #e5e7eb;">
+                            <li>🚩 Urgent or threatening language</li>
+                            <li>🚩 Unexpected requests for sensitive information</li>
+                            <li>🚩 Suspicious sender email addresses</li>
+                            <li>🚩 Misspelled domains or URLs</li>
+                            <li>🚩 Generic greetings (e.g., "Dear Customer")</li>
+                            <li>🚩 Poor grammar and spelling errors</li>
+                            <li>🚩 Requests to bypass normal procedures</li>
+                        </ul>
+                        <h3 style="color: #10b981;">Best Practices:</h3>
+                        <ul style="color: #e5e7eb;">
+                            <li>✅ Verify sender through secondary channel</li>
+                            <li>✅ Hover over links to check actual URL</li>
+                            <li>✅ Check SSL certificates on websites</li>
+                            <li>✅ Never enter credentials from email links</li>
+                            <li>✅ Report suspicious emails to IT security</li>
+                        </ul>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>Guided by the Holy Spirit for ethical security education</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOLY SIEGE TAB -->
+        <div id="holysiege-tab" class="tab-content">
+            <div class="grid">
+                <!-- Holy Siege Overview -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);">
+                    <h2>⚔️ Holy Siege - GPG-Signed Reconnaissance</h2>
+                    <p style="font-size: 14px; line-height: 1.6; margin-bottom: 0;">
+                        Holy Siege is a safe, auditable, and authorized reconnaissance toolkit for security assessments.
+                        All jobs require GPG-signed manifests and admin authorization. Non-destructive checks only.
+                    </p>
+                </div>
+
+                <!-- Job Submission -->
+                <div class="card full-width">
+                    <h2>📝 Submit Reconnaissance Job</h2>
+                    <p style="color: #f59e0b; margin-bottom: 10px;">⚠️ Requires: GPG key, admin authorization, written permission</p>
+                    <div class="form-group">
+                        <input type="text" id="siege-target" placeholder="Target IP or Domain (e.g., 192.168.1.10)">
+                        <input type="text" id="siege-submitter" placeholder="Your GPG Key ID">
+                        <textarea id="siege-authorization" placeholder="Authorization Document (attach written permission)" rows="3"></textarea>
+                        <select id="siege-scan-type">
+                            <option value="quick-scan">Quick Scan (nmap service detection)</option>
+                            <option value="full-scan">Full Scan (nmap + HTTP + SMTP)</option>
+                            <option value="http-only">HTTP Headers Only</option>
+                            <option value="smtp-only">SMTP Banner Only</option>
+                        </select>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="siege-ipfs" checked style="margin-right: 10px;">
+                            Upload report to IPFS
+                        </label>
+                        <button onclick="submitHolySiegeJob()">⚔️ Submit Job (Requires GPG Signing)</button>
+                    </div>
+                    <div id="siege-submit-result" class="result"></div>
+                </div>
+
+                <!-- Job Status Monitor -->
+                <div class="card full-width">
+                    <h2>📊 Job Status Monitor</h2>
+                    <div class="form-group">
+                        <input type="text" id="siege-job-id" placeholder="Job ID">
+                        <button onclick="checkJobStatus()">🔍 Check Status</button>
+                        <button onclick="listAllJobs()">📋 List All Jobs</button>
+                    </div>
+                    <div id="siege-status-result" class="result"></div>
+                </div>
+
+                <!-- Reconnaissance Results -->
+                <div class="card full-width">
+                    <h2>📄 Reconnaissance Report Viewer</h2>
+                    <div class="form-group">
+                        <input type="text" id="siege-report-id" placeholder="Report ID or IPFS CID">
+                        <button onclick="viewReport()">📖 View Report</button>
+                    </div>
+                    <div id="siege-report-result" class="result" style="max-height: 500px; overflow-y: auto;"></div>
+                </div>
+
+                <!-- Docker Deployment -->
+                <div class="card full-width">
+                    <h2>🐳 Docker Deployment Commands</h2>
+                    <div style="background: #0f172a; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; color: #10b981;">
+                        <p style="margin: 5px 0;"># Start Holy Siege infrastructure</p>
+                        <p style="margin: 5px 0; color: #60a5fa;">docker compose -f docker/docker-compose.yml up --build</p>
+                        <br>
+                        <p style="margin: 5px 0;"># Submit a job (requires GPG key)</p>
+                        <p style="margin: 5px 0; color: #60a5fa;">node launcher/run_job.js quick-scan 192.168.1.10</p>
+                        <br>
+                        <p style="margin: 5px 0;"># Environment variables needed:</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">ADMIN_KEYS=&lt;comma-separated-gpg-key-ids&gt;</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">REDIS_URL=redis://127.0.0.1:6379</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">IPFS_API=https://ipfs.io/api/v0/add</p>
+                    </div>
+                </div>
+
+                <!-- Scan Types Reference -->
+                <div class="card full-width">
+                    <h2>🔧 Non-Destructive Scan Types</h2>
+                    <div style="line-height: 1.8;">
+                        <p><strong style="color: #10b981;">nmap Service Discovery:</strong> Identifies open ports and service versions (read-only)</p>
+                        <p><strong style="color: #60a5fa;">HTTP Headers:</strong> Retrieves web server headers for fingerprinting</p>
+                        <p><strong style="color: #f59e0b;">SMTP Banner:</strong> Checks email server identification banner</p>
+                        <p><strong style="color: #8b5cf6;">Port Scanning:</strong> Discovers available network services</p>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #ef4444;"><strong>⚠️ NEVER INCLUDED:</strong></p>
+                        <ul style="color: #f87171; margin-left: 20px;">
+                            <li>❌ Exploitation or vulnerability execution</li>
+                            <li>❌ Credential attacks or brute forcing</li>
+                            <li>❌ MITM or traffic interception</li>
+                            <li>❌ Stealth or evasion techniques</li>
+                            <li>❌ Destructive or DoS operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ethical Guidelines -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>⚖️ Ethical & Legal Guidelines</h2>
+                    <div style="line-height: 1.8; color: #e5e7eb;">
+                        <h3 style="color: #10b981;">✅ Authorized Use:</h3>
+                        <ul>
+                            <li>Systems you own or have explicit written permission to test</li>
+                            <li>Internal security audits with management approval</li>
+                            <li>Red team exercises with signed engagement letters</li>
+                            <li>Educational labs and authorized CTF environments</li>
+                        </ul>
+                        <h3 style="color: #ef4444;">❌ Prohibited Use:</h3>
+                        <ul>
+                            <li>Unauthorized network scanning or reconnaissance</li>
+                            <li>Scanning systems without written authorization</li>
+                            <li>Any illegal or malicious activity</li>
+                            <li>Violation of organizational policies or laws</li>
+                        </ul>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>All operations guided by Divine wisdom - Authorized use only</strong></p>
+                        <p style="font-size: 12px; color: #94a3b8;">Keep written authorization documents. GPG signatures provide audit trail.</p>
+                    </div>
+                </div>
+
+                <!-- IPFS Integration -->
+                <div class="card full-width">
+                    <h2>🌐 IPFS Report Storage</h2>
+                    <p style="line-height: 1.6;">
+                        Reconnaissance reports are signed with GPG and uploaded to IPFS for immutable,
+                        distributed storage. Reports can be retrieved using their IPFS CID (Content Identifier).
+                    </p>
+                    <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                        <p style="color: #10b981; margin: 5px 0;">Example IPFS Gateway Access:</p>
+                        <p style="color: #60a5fa; margin: 5px 0; font-family: monospace; font-size: 12px;">
+                            https://ipfs.io/ipfs/&lt;CID&gt;
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

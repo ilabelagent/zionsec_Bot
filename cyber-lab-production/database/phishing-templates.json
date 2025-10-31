@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Banking Password Reset",
+    "category": "email",
+    "difficulty": "beginner",
+    "description": "Classic banking phishing email requesting password reset",
+    "indicators": [
+      "Suspicious sender email address",
+      "Generic greeting (no personalization)",
+      "Urgent/threatening language",
+      "Misspelled domain in link",
+      "Poor grammar and formatting"
+    ],
+    "content": "Subject: URGENT: {{bank_name}} Account Security Alert\n\nDear {{customer_name}},\n\nWe have detected suspicious activity on your {{bank_name}} account ending in {{account_last4}}.\n\nFor your security, we have temporarily suspended your account. You must verify your identity immediately to restore access.\n\nClick here to verify: {{phishing_link}}\n\nIf you do not verify within 24 hours, your account will be permanently closed.\n\nThank you,\n{{bank_name}} Security Team\n\n---\nThis is an automated message. Do not reply.",
+    "variables": [
+      "bank_name",
+      "customer_name",
+      "account_last4",
+      "phishing_link"
+    ],
+    "educationalNotes": "Real banks never ask for password resets via email links. They will direct you to log in through their official website or app. Always check the sender's email domain carefully.",
+    "id": "template_1761933776990_0",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "CEO Email Compromise",
+    "category": "email",
+    "difficulty": "advanced",
+    "description": "Business Email Compromise (BEC) impersonating executive",
+    "indicators": [
+      "Display name matches but email address different",
+      "Unusual request for urgency and secrecy",
+      "Request to bypass normal procedures",
+      "Personal request instead of official channel",
+      "Pressure to act quickly without verification"
+    ],
+    "content": "Subject: Urgent Wire Transfer Needed\n\n{{employee_name}},\n\nI'm in a critical meeting with investors and need your immediate help. We need to process an urgent wire transfer to secure this deal.\n\nAmount: ${{amount}}\nAccount: {{account_number}}\nBank: {{bank_name}}\nRouting: {{routing_number}}\n\nPlease process this ASAP and keep it confidential until I announce the deal. Don't mention this to anyone in accounting - I'll brief the team later.\n\nTime is critical. Can you confirm once done?\n\n{{ceo_name}}\n{{ceo_title}}\n\nSent from my iPhone",
+    "variables": [
+      "employee_name",
+      "amount",
+      "account_number",
+      "bank_name",
+      "routing_number",
+      "ceo_name",
+      "ceo_title"
+    ],
+    "educationalNotes": "BEC attacks exploit trust and urgency. Always verify unusual financial requests through a secondary communication channel (phone call to known number). Be suspicious of requests to bypass normal procedures.",
+    "id": "template_1761933776990_1",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "Package Delivery Notification",
+    "category": "sms",
+    "difficulty": "intermediate",
+    "description": "SMS phishing (smishing) about failed package delivery",
+    "indicators": [
+      "Unexpected package notification",
+      "Shortened URL (bit.ly, tinyurl)",
+      "Sense of urgency",
+      "Request to click link instead of providing tracking number",
+      "Unknown sender number"
+    ],
+    "content": "{{courier_name}}: Your package delivery failed. Confirm your address to reschedule: {{short_link}}\n\nPackage ID: {{tracking_number}}\nSender: {{sender_name}}\n\n⚠️ Link expires in 24h",
+    "variables": [
+      "courier_name",
+      "short_link",
+      "tracking_number",
+      "sender_name"
+    ],
+    "educationalNotes": "Legitimate courier services provide tracking numbers that can be verified on their official website. Never click links in unsolicited SMS messages. Instead, go directly to the courier's official site or app.",
+    "id": "template_1761933776990_2",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "Microsoft 365 Sign-in Page",
+    "category": "webpage",
+    "difficulty": "intermediate",
+    "description": "Cloned Microsoft 365 login page for credential harvesting",
+    "indicators": [
+      "URL doesn't match microsoft.com",
+      "Missing HTTPS or invalid certificate",
+      "Subtle spelling differences (micros0ft, rnicrosoft)",
+      "No single sign-on integration",
+      "Unusual redirect after login attempt"
+    ],
+    "content": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Sign in to your account - {{company_name}}</title>\n  <style>\n    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f3f3f3; }\n    .container { max-width: 440px; margin: 100px auto; background: white; padding: 44px; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }\n    .logo { text-align: center; margin-bottom: 20px; }\n    h1 { font-size: 24px; font-weight: 600; margin: 0 0 8px; }\n    .subtitle { color: #737373; font-size: 15px; margin-bottom: 24px; }\n    input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #8c8c8c; font-size: 15px; }\n    button { width: 100%; background: #0067b8; color: white; border: none; padding: 12px; font-size: 15px; cursor: pointer; margin-top: 24px; }\n    button:hover { background: #005a9e; }\n    .warning { background: #fff4ce; border: 1px solid #ffb900; padding: 12px; margin-top: 20px; color: #323130; font-size: 13px; display: none; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"logo\">\n      <svg width=\"108\" height=\"24\" viewBox=\"0 0 108 24\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"#f25022\" d=\"M0 0h11.377v11.372H0V0z\"/><path fill=\"#80ba01\" d=\"M12.69 0h11.377v11.372H12.69V0z\"/><path fill=\"#02a4ef\" d=\"M0 12.687h11.377v11.372H0V12.687z\"/><path fill=\"#ffb903\" d=\"M12.69 12.687h11.377v11.372H12.69V12.687z\"/></svg>\n    </div>\n    <h1>Sign in</h1>\n    <div class=\"subtitle\">to continue to {{company_name}}</div>\n\n    <form id=\"loginForm\" action=\"{{action_url}}\" method=\"POST\">\n      <input type=\"email\" name=\"email\" placeholder=\"Email, phone, or Skype\" required>\n      <input type=\"password\" name=\"password\" placeholder=\"Password\" required>\n      <button type=\"submit\">Sign in</button>\n    </form>\n\n    <div class=\"warning\" id=\"educationalAlert\">\n      🛡️ <strong>TRAINING ALERT:</strong> This is a phishing awareness training page. Never enter credentials on untrusted sites. Always verify the URL matches the official domain.\n    </div>\n  </div>\n  <script>\n    // Educational mode - show alert before submission\n    document.getElementById('loginForm').addEventListener('submit', function(e) {\n      e.preventDefault();\n      document.getElementById('educationalAlert').style.display = 'block';\n      alert('🎓 Training Complete! You encountered a phishing page. Red flags:\\n- Check the URL in your browser\\n- Verify SSL certificate\\n- Look for Microsoft 365 branding discrepancies');\n    });\n  </script>\n</body>\n</html>",
+    "variables": [
+      "company_name",
+      "action_url"
+    ],
+    "educationalNotes": "Credential harvesting pages mimic legitimate login screens. Always check: 1) The URL domain, 2) SSL certificate validity, 3) Spelling and grammar, 4) How you arrived at the page (email link vs. direct navigation).",
+    "id": "template_1761933776990_3",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "IRS Tax Refund Notification",
+    "category": "email",
+    "difficulty": "intermediate",
+    "description": "Government impersonation promising tax refund",
+    "indicators": [
+      "IRS doesn't initiate contact via email",
+      "Promise of unexpected refund",
+      "Request for personal/banking information",
+      "Threatening consequences for non-compliance",
+      "Non-government email domain"
+    ],
+    "content": "Subject: IRS Tax Refund Notification - {{tax_year}}\n\nDear Taxpayer {{taxpayer_name}},\n\nAfter reviewing your {{tax_year}} tax return, we have determined that you are eligible for a refund of ${{refund_amount}}.\n\nTo process your refund, please verify your information:\n👉 {{verification_link}}\n\nYou will need to provide:\n- Social Security Number\n- Date of Birth\n- Bank Account Information\n- Previous Year AGI\n\nRefunds are processed within 3-5 business days after verification.\n\nFailure to claim within 30 days will result in forfeiture of refund.\n\nInternal Revenue Service\n{{fake_office_address}}\n\n---\nThis is an official IRS notification. Do not reply to this email.",
+    "variables": [
+      "taxpayer_name",
+      "tax_year",
+      "refund_amount",
+      "verification_link",
+      "fake_office_address"
+    ],
+    "educationalNotes": "The IRS NEVER initiates contact via email, text, or social media. They only contact taxpayers by postal mail. They will never ask for PIN numbers, passwords, or credit card information. If you receive this, report it to phishing@irs.gov.",
+    "id": "template_1761933776990_4",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "Tech Support Popup",
+    "category": "webpage",
+    "difficulty": "beginner",
+    "description": "Fake virus warning with tech support scam",
+    "indicators": [
+      "Popup claims virus/malware detected",
+      "Cannot close popup normally",
+      "Provides phone number for 'support'",
+      "Uses scare tactics and countdown timers",
+      "Not from official antivirus software"
+    ],
+    "content": "<!DOCTYPE html>\n<html>\n<head>\n  <title>⚠️ SECURITY ALERT ⚠️</title>\n  <style>\n    * { margin: 0; padding: 0; }\n    body { background: #1a1a1a; color: #fff; font-family: Arial, sans-serif; overflow: hidden; }\n    .alert-container { background: linear-gradient(135deg, #c30000 0%, #ff0000 100%); padding: 40px; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }\n    .warning-icon { font-size: 80px; animation: pulse 1s infinite; }\n    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }\n    h1 { font-size: 36px; margin: 20px 0; text-transform: uppercase; letter-spacing: 2px; }\n    .threat-list { background: rgba(0,0,0,0.3); padding: 30px; margin: 30px 0; border-radius: 10px; text-align: left; max-width: 600px; }\n    .threat-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }\n    .phone { font-size: 42px; font-weight: bold; background: #fff; color: #c30000; padding: 20px; margin: 30px 0; border-radius: 10px; letter-spacing: 3px; }\n    .countdown { font-size: 24px; margin: 20px 0; }\n    .blink { animation: blink 1s infinite; }\n    @keyframes blink { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }\n  </style>\n</head>\n<body>\n  <div class=\"alert-container\">\n    <div class=\"warning-icon\">⚠️🛡️⚠️</div>\n    <h1 class=\"blink\">CRITICAL SECURITY ALERT</h1>\n    <h2>Your Computer Has Been Locked</h2>\n\n    <div class=\"threat-list\">\n      <div class=\"threat-item\">🦠 Trojan.Generic.KD.31234567 - DETECTED</div>\n      <div class=\"threat-item\">🔒 Ransomware.Encrypt.X - ACTIVE</div>\n      <div class=\"threat-item\">👁️ Spyware.Keylogger.Pro - MONITORING</div>\n      <div class=\"threat-item\">💳 CreditCardStealer.v3 - TRANSMITTING</div>\n    </div>\n\n    <p style=\"font-size: 20px; margin: 20px 0;\">\n      Your personal information, banking details, and passwords are at risk!\n    </p>\n\n    <div class=\"countdown\">\n      Auto-wipe in: <span id=\"timer\">05:00</span>\n    </div>\n\n    <div class=\"phone\">☎️ {{support_number}}</div>\n\n    <h3>CALL MICROSOFT CERTIFIED TECHNICIANS IMMEDIATELY</h3>\n    <p style=\"margin-top: 20px; font-size: 14px; opacity: 0.8;\">\n      Do NOT restart your computer. Do NOT close this window.<br>\n      Toll-Free Support Available 24/7\n    </p>\n\n    <div style=\"margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; max-width: 600px;\">\n      <h4 style=\"color: #ffff00;\">🎓 EDUCATIONAL ALERT</h4>\n      <p style=\"margin-top: 10px; font-size: 14px; text-align: left;\">\n        This is a phishing awareness training demonstration. Real security alerts come from YOUR installed antivirus software, not from websites. Microsoft and legitimate companies never display popups with phone numbers. If you see this, close the browser (use Task Manager if needed) and run a real antivirus scan.\n      </p>\n    </div>\n  </div>\n\n  <script>\n    // Countdown timer (purely visual)\n    let seconds = 300;\n    setInterval(() => {\n      seconds--;\n      if (seconds < 0) seconds = 300;\n      const mins = Math.floor(seconds / 60);\n      const secs = seconds % 60;\n      document.getElementById('timer').textContent =\n        mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');\n    }, 1000);\n  </script>\n</body>\n</html>",
+    "variables": [
+      "support_number"
+    ],
+    "educationalNotes": "Tech support scams use fear tactics to trick victims into calling fake support numbers. Real security threats are detected by YOUR antivirus software, not by websites. Never call numbers from popup warnings. Close the browser using Task Manager if needed.",
+    "id": "template_1761933776990_5",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  },
+  {
+    "name": "QR Code Parking Fine",
+    "category": "qr_code",
+    "difficulty": "advanced",
+    "description": "Physical QR code phishing attack via fake parking citation",
+    "indicators": [
+      "QR code on unsolicited physical notice",
+      "Urgent payment demand",
+      "QR code leads to non-official domain",
+      "No official citation number or verification",
+      "Unusual payment methods requested"
+    ],
+    "content": "PARKING VIOLATION NOTICE\n\nVehicle: {{vehicle_description}}\nLicense: {{license_plate}}\nLocation: {{location}}\nDate/Time: {{date_time}}\n\nVIOLATION: {{violation_type}}\nFINE AMOUNT: ${{fine_amount}}\n\nPAY NOW TO AVOID ADDITIONAL CHARGES\n\n[QR CODE HERE]\n{{qr_code_data}}\n\nScan QR code or visit: {{payment_url}}\n\nLate Fee: ${{late_fee}} after {{due_date}}\n\n{{city_name}} Parking Enforcement\nCitation #{{fake_citation_number}}\n\n---\nEDUCATIONAL NOTE: This is a training demonstration. Real parking citations can be verified through official city websites or by calling the number on your city's official parking enforcement website. QR codes on unexpected notices should be treated with suspicion.",
+    "variables": [
+      "vehicle_description",
+      "license_plate",
+      "location",
+      "date_time",
+      "violation_type",
+      "fine_amount",
+      "qr_code_data",
+      "payment_url",
+      "late_fee",
+      "due_date",
+      "city_name",
+      "fake_citation_number"
+    ],
+    "educationalNotes": "QR code phishing (quishing) is emerging as attackers place malicious QR codes on physical items. Always verify unexpected notices through official channels before scanning codes or making payments. Check your city's official website for citation verification.",
+    "id": "template_1761933776990_6",
+    "createdAt": "2025-10-31T18:02:56.990Z",
+    "updatedAt": "2025-10-31T18:02:56.990Z"
+  }
+]

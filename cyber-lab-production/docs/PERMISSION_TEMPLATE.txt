@@ -1,0 +1,17 @@
+PERMISSION TEMPLATE - AUTHORIZATION TO CONDUCT SECURITY SCANS
+
+I, the undersigned, authorize [YOUR ORGANIZATION / NAME] to perform non-destructive security scanning,
+configuration checks, and authorized hardening actions on the systems listed below during the period specified.
+
+Target systems:
+- [example IP / hostname]
+
+Authorized actions:
+- Network service discovery (nmap -sV)
+- HTTP header checks
+- SMTP banner checks
+- Non-destructive hardening using Ansible (with canary & rollback)
+
+Signature: ______________________
+Name: ___________________________
+Date: ___________________________

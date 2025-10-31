@@ -1484,5 +1484,576 @@ function downloadFile(content, filename) {
     URL.revokeObjectURL(url);
 }
 
+// ===== SPOOFING LAB FUNCTIONS =====
+
+let currentTemplates = [];
+
+async function loadTemplates() {
+    const category = document.getElementById('template-category').value;
+    const difficulty = document.getElementById('template-difficulty').value;
+
+    showLoading('template-gallery');
+
+    try {
+        let url = '/api/spoofing/templates?';
+        if (category) url += `category=${category}&`;
+        if (difficulty) url += `difficulty=${difficulty}`;
+
+        const response = await fetch(url);
+        const templates = await response.json();
+        currentTemplates = templates;
+
+        if (templates.length === 0) {
+            document.getElementById('template-gallery').innerHTML = '<p>No templates found.</p>';
+            return;
+        }
+
+        let html = '';
+        templates.forEach(template => {
+            const difficultyColors = {
+                beginner: '#10b981',
+                intermediate: '#f59e0b',
+                advanced: '#f97316',
+                expert: '#ef4444'
+            };
+
+            const categoryIcons = {
+                email: '📧',
+                sms: '💬',
+                webpage: '🌐',
+                voice: '📞',
+                qr_code: '🔳'
+            };
+
+            html += `
+                <div style="margin: 15px 0; padding: 15px; background: white; border-left: 5px solid ${difficultyColors[template.difficulty]}; border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <h4 style="margin: 0;">${categoryIcons[template.category]} ${template.name}</h4>
+                            <p style="margin: 5px 0; color: #666;">${template.description}</p>
+                            <div style="margin: 10px 0;">
+                                <span style="background: ${difficultyColors[template.difficulty]}; color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.85em;">
+                                    ${template.difficulty.toUpperCase()}
+                                </span>
+                                <span style="background: #e5e7eb; padding: 3px 8px; border-radius: 5px; font-size: 0.85em; margin-left: 5px;">
+                                    ${template.category}
+                                </span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate('${template.id}')" style="height: fit-content;">Select</button>
+                    </div>
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; font-weight: bold;">View Details</summary>
+                        <div style="margin-top: 10px; padding: 10px; background: #f9fafb; border-radius: 5px;">
+                            <h5>Red Flags:</h5>
+                            <ul>
+                                ${template.indicators.map(i => `<li>${i}</li>`).join('')}
+                            </ul>
+                            <h5>Variables:</h5>
+                            <p>${template.variables.join(', ')}</p>
+                            <h5>Educational Notes:</h5>
+                            <p style="color: #666;">${template.educationalNotes}</p>
+                        </div>
+                    </details>
+                </div>
+            `;
+        });
+
+        document.getElementById('template-gallery').innerHTML = html;
+
+        // Update template dropdowns
+        const customizeSelect = document.getElementById('customize-template-id');
+        const campaignSelect = document.getElementById('campaign-template');
+        const reportSelect = document.getElementById('report-campaign');
+
+        customizeSelect.innerHTML = '<option value="">Select template...</option>';
+        campaignSelect.innerHTML = '<option value="">Select template...</option>';
+
+        templates.forEach(t => {
+            customizeSelect.innerHTML += `<option value="${t.id}">${t.name}</option>`;
+            campaignSelect.innerHTML += `<option value="${t.id}">${t.name}</option>`;
+        });
+
+    } catch (error) {
+        displayResult('template-gallery', error.message, true);
+    }
+}
+
+function selectTemplate(templateId) {
+    document.getElementById('customize-template-id').value = templateId;
+    document.querySelector('[onclick="showCustomizationForm()"]').click();
+}
+
+async function showCustomizationForm() {
+    const templateId = document.getElementById('customize-template-id').value;
+    if (!templateId) {
+        alert('Please select a template first');
+        return;
+    }
+
+    const template = currentTemplates.find(t => t.id === templateId);
+    if (!template) {
+        alert('Template not found');
+        return;
+    }
+
+    const form = document.getElementById('customization-form');
+    const variablesDiv = document.getElementById('template-variables');
+
+    let html = '<h4>Fill in template variables:</h4>';
+    template.variables.forEach(variable => {
+        html += `
+            <div style="margin: 10px 0;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">{{${variable}}}</label>
+                <input type="text" id="var-${variable}" placeholder="${variable}" style="width: 100%;">
+            </div>
+        `;
+    });
+
+    variablesDiv.innerHTML = html;
+    form.style.display = 'block';
+}
+
+async function customizeTemplate() {
+    const templateId = document.getElementById('customize-template-id').value;
+    const template = currentTemplates.find(t => t.id === templateId);
+
+    if (!template) {
+        alert('Template not found');
+        return;
+    }
+
+    const customizations = {};
+    template.variables.forEach(variable => {
+        const value = document.getElementById(`var-${variable}`).value;
+        customizations[variable] = value || `[${variable}]`;
+    });
+
+    showLoading('customized-result');
+
+    try {
+        const response = await fetch(`/api/spoofing/customize/${templateId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ customizations })
+        });
+
+        const data = await response.json();
+
+        let html = '<h3>✅ Template Customized</h3>';
+        html += '<h4>Generated Content:</h4>';
+        html += `<textarea readonly style="width: 100%; height: 400px; font-family: monospace; padding: 10px; border-radius: 5px;">${data.customized}</textarea>`;
+        html += '<button onclick="copyToClipboard(this.previousElementSibling.value)" style="margin-top: 10px;">📋 Copy to Clipboard</button>';
+
+        document.getElementById('customized-result').innerHTML = html;
+    } catch (error) {
+        displayResult('customized-result', error.message, true);
+    }
+}
+
+function showCampaignForm() {
+    const form = document.getElementById('campaign-form');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+async function createCampaign() {
+    const name = document.getElementById('campaign-name').value;
+    const templateId = document.getElementById('campaign-template').value;
+    const audience = document.getElementById('campaign-audience').value;
+    const purpose = document.getElementById('campaign-purpose').value;
+    const creator = document.getElementById('campaign-creator').value;
+
+    if (!name || !templateId || !audience || !creator) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/spoofing/campaigns', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                templateId,
+                customizations: {},
+                targetAudience: audience,
+                purpose,
+                status: 'draft',
+                createdBy: creator
+            })
+        });
+
+        const campaign = await response.json();
+        alert(`✅ Campaign created: ${campaign.name}`);
+
+        // Clear form
+        document.getElementById('campaign-name').value = '';
+        document.getElementById('campaign-audience').value = '';
+        document.getElementById('campaign-creator').value = '';
+        showCampaignForm();
+
+        // Reload campaigns
+        loadCampaigns();
+    } catch (error) {
+        alert('Failed to create campaign');
+    }
+}
+
+async function loadCampaigns() {
+    showLoading('campaigns-list');
+
+    try {
+        const response = await fetch('/api/spoofing/campaigns');
+        const campaigns = await response.json();
+
+        if (campaigns.length === 0) {
+            document.getElementById('campaigns-list').innerHTML = '<p>No campaigns found.</p>';
+            return;
+        }
+
+        let html = '<h3>Active Campaigns</h3>';
+        campaigns.forEach(campaign => {
+            const statusColors = {
+                draft: '#6b7280',
+                active: '#10b981',
+                completed: '#3b82f6',
+                archived: '#9ca3af'
+            };
+
+            html += `
+                <div style="margin: 15px 0; padding: 15px; background: white; border-left: 5px solid ${statusColors[campaign.status]}; border-radius: 8px;">
+                    <h4 style="margin: 0;">${campaign.name}</h4>
+                    <p style="margin: 5px 0; color: #666;">Target: ${campaign.targetAudience} | Purpose: ${campaign.purpose}</p>
+                    <div style="margin: 10px 0;">
+                        <span style="background: ${statusColors[campaign.status]}; color: white; padding: 3px 8px; border-radius: 5px; font-size: 0.85em;">
+                            ${campaign.status.toUpperCase()}
+                        </span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; font-size: 0.9em;">
+                        <div>📤 Sent: ${campaign.stats.sent}</div>
+                        <div>👆 Clicked: ${campaign.stats.clicked}</div>
+                        <div>🚩 Reported: ${campaign.stats.reported}</div>
+                        <div>🎓 Educated: ${campaign.stats.educated}</div>
+                    </div>
+                </div>
+            `;
+        });
+
+        document.getElementById('campaigns-list').innerHTML = html;
+
+        // Update report dropdown
+        const reportSelect = document.getElementById('report-campaign');
+        reportSelect.innerHTML = '<option value="">Select campaign...</option>';
+        campaigns.forEach(c => {
+            reportSelect.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+        });
+
+    } catch (error) {
+        displayResult('campaigns-list', error.message, true);
+    }
+}
+
+async function analyzeSpoofing() {
+    const target = document.getElementById('spoof-target').value;
+    const type = document.getElementById('spoof-type').value;
+    const originalIdentity = document.getElementById('spoof-original').value;
+    const spoofedIdentity = document.getElementById('spoof-spoofed').value;
+    const detectionDifficulty = parseInt(document.getElementById('spoof-difficulty').value);
+
+    if (!target || !originalIdentity || !spoofedIdentity) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    showLoading('spoofing-result');
+
+    try {
+        const response = await fetch('/api/spoofing/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                target,
+                type,
+                originalIdentity,
+                spoofedIdentity,
+                detectionDifficulty
+            })
+        });
+
+        const data = await response.json();
+
+        const difficultyColor = data.detectionDifficulty >= 70 ? '#ef4444' : data.detectionDifficulty >= 40 ? '#f59e0b' : '#10b981';
+
+        let html = `
+            <h3>Spoofing Analysis: ${data.type.toUpperCase()}</h3>
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>Target:</strong> ${data.target}</p>
+                <p><strong>Original:</strong> ${data.originalIdentity}</p>
+                <p><strong>Spoofed:</strong> ${data.spoofedIdentity}</p>
+                <div style="margin: 10px 0;">
+                    <strong>Detection Difficulty:</strong>
+                    <div style="background: #e5e7eb; height: 20px; border-radius: 10px; margin-top: 5px;">
+                        <div style="background: ${difficultyColor}; height: 100%; width: ${data.detectionDifficulty}%; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                            ${data.detectionDifficulty}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        html += '<h4>🚩 Detection Indicators:</h4><ul>';
+        data.indicators.forEach(i => {
+            html += `<li>${i}</li>`;
+        });
+        html += '</ul>';
+
+        html += '<h4>🛡️ Prevention Methods:</h4><ul>';
+        data.preventionMethods.forEach(p => {
+            html += `<li>${p}</li>`;
+        });
+        html += '</ul>';
+
+        html += '<h4>🔧 Recommended Tools:</h4><ul>';
+        data.tools.forEach(t => {
+            html += `<li>${t}</li>`;
+        });
+        html += '</ul>';
+
+        document.getElementById('spoofing-result').innerHTML = html;
+    } catch (error) {
+        displayResult('spoofing-result', error.message, true);
+    }
+}
+
+async function generateReport() {
+    const campaignId = document.getElementById('report-campaign').value;
+    if (!campaignId) {
+        alert('Please select a campaign');
+        return;
+    }
+
+    showLoading('report-result');
+
+    try {
+        const response = await fetch(`/api/spoofing/campaigns/${campaignId}/report`);
+        const data = await response.json();
+
+        const effectivenessColor = data.effectiveness >= 80 ? '#10b981' : data.effectiveness >= 60 ? '#3b82f6' : data.effectiveness >= 40 ? '#f59e0b' : '#ef4444';
+
+        let html = `
+            <h3>Training Effectiveness Report</h3>
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                <h4 style="margin: 0 0 10px 0;">${data.campaign.name}</h4>
+                <p style="margin: 5px 0;"><strong>Template:</strong> ${data.template.name} (${data.template.difficulty})</p>
+                <p style="margin: 5px 0;"><strong>Target Audience:</strong> ${data.campaign.targetAudience}</p>
+                <p style="margin: 5px 0;"><strong>Purpose:</strong> ${data.campaign.purpose}</p>
+            </div>
+        `;
+
+        html += `
+            <div style="text-align: center; margin: 20px 0;">
+                <div style="font-size: 4em; font-weight: bold; color: ${effectivenessColor};">${data.effectiveness}</div>
+                <div style="font-size: 1.2em;">Effectiveness Score</div>
+            </div>
+        `;
+
+        html += `
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold;">${data.campaign.stats.sent}</div>
+                    <div>Total Sent</div>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold; color: #ef4444;">${data.campaign.stats.clicked}</div>
+                    <div>Clicked (Fell for it)</div>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold; color: #10b981;">${data.campaign.stats.reported}</div>
+                    <div>Reported</div>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold; color: #3b82f6;">${data.campaign.stats.educated}</div>
+                    <div>Educated</div>
+                </div>
+            </div>
+        `;
+
+        html += '<h4>📊 Recommendations:</h4><ul>';
+        data.recommendations.forEach(rec => {
+            html += `<li>${rec}</li>`;
+        });
+        html += '</ul>';
+
+        document.getElementById('report-result').innerHTML = html;
+    } catch (error) {
+        displayResult('report-result', error.message, true);
+    }
+}
+
+// ===== HOLY SIEGE FUNCTIONS =====
+
+async function submitHolySiegeJob() {
+    const target = document.getElementById('siege-target').value;
+    const submitter = document.getElementById('siege-submitter').value;
+    const authorization = document.getElementById('siege-authorization').value;
+    const scanType = document.getElementById('siege-scan-type').value;
+    const ipfs = document.getElementById('siege-ipfs').checked;
+
+    if (!target || !submitter || !authorization) {
+        alert('Please fill in all required fields including written authorization');
+        return;
+    }
+
+    showLoading('siege-submit-result');
+
+    let html = `
+        <div style="background: #fef3c7; border-left: 5px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 15px 0;">
+            <h3 style="margin: 0; color: #92400e;">⚠️ GPG Signing Required</h3>
+            <p style="margin: 10px 0; color: #78350f;">
+                Holy Siege requires GPG-signed manifests for all reconnaissance jobs.
+                This web interface cannot sign manifests directly.
+            </p>
+            <h4 style="margin: 10px 0; color: #78350f;">To submit this job:</h4>
+            <ol style="color: #78350f;">
+                <li>Ensure Holy Siege infrastructure is running:
+                    <code style="display: block; background: #0f172a; color: #10b981; padding: 10px; border-radius: 5px; margin: 5px 0;">
+                        docker compose -f docker/docker-compose.yml up --build
+                    </code>
+                </li>
+                <li>Use the launcher tool with your GPG key:
+                    <code style="display: block; background: #0f172a; color: #10b981; padding: 10px; border-radius: 5px; margin: 5px 0;">
+                        node launcher/run_job.js ${scanType} ${target}
+                    </code>
+                </li>
+                <li>Your GPG key (${submitter}) must be in the ADMIN_KEYS environment variable</li>
+                <li>Ensure you have written authorization documented</li>
+            </ol>
+            <p style="margin: 10px 0; color: #78350f;">
+                <strong>Authorization Summary:</strong><br>
+                <em>${authorization}</em>
+            </p>
+        </div>
+    `;
+
+    html += `
+        <div style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%); color: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+            <h4 style="margin: 0 0 10px 0;">Planned Job Details:</h4>
+            <p style="margin: 5px 0;"><strong>Target:</strong> ${target}</p>
+            <p style="margin: 5px 0;"><strong>Scan Type:</strong> ${scanType}</p>
+            <p style="margin: 5px 0;"><strong>Submitter GPG Key:</strong> ${submitter}</p>
+            <p style="margin: 5px 0;"><strong>IPFS Upload:</strong> ${ipfs ? 'Enabled' : 'Disabled'}</p>
+            <p style="margin: 10px 0; font-size: 0.9em; opacity: 0.9;">
+                ✝️ All reconnaissance guided by Divine wisdom - Authorized use only
+            </p>
+        </div>
+    `;
+
+    document.getElementById('siege-submit-result').innerHTML = html;
+}
+
+async function checkJobStatus() {
+    const jobId = document.getElementById('siege-job-id').value;
+    if (!jobId) {
+        alert('Please enter a job ID');
+        return;
+    }
+
+    showLoading('siege-status-result');
+
+    let html = `
+        <div style="background: #fee2e2; border-left: 5px solid #ef4444; padding: 15px; border-radius: 8px;">
+            <h3 style="margin: 0; color: #991b1b;">⚠️ Controller Not Running</h3>
+            <p style="margin: 10px 0; color: #7f1d1d;">
+                The Holy Siege controller must be running to check job status.
+            </p>
+            <p style="margin: 10px 0; color: #7f1d1d;">
+                <strong>Start the controller:</strong><br>
+                <code style="display: block; background: #0f172a; color: #10b981; padding: 10px; border-radius: 5px; margin: 5px 0;">
+                    docker compose -f docker/docker-compose.yml up --build
+                </code>
+            </p>
+            <p style="margin: 10px 0; color: #7f1d1d;">
+                Then query job status at: <code>http://localhost:3000/api/jobs/${jobId}</code>
+            </p>
+        </div>
+    `;
+
+    document.getElementById('siege-status-result').innerHTML = html;
+}
+
+async function listAllJobs() {
+    showLoading('siege-status-result');
+
+    let html = `
+        <div style="background: #dbeafe; border-left: 5px solid #3b82f6; padding: 15px; border-radius: 8px;">
+            <h3 style="margin: 0; color: #1e40af;">ℹ️ Job Listing</h3>
+            <p style="margin: 10px 0; color: #1e3a8a;">
+                Job listing requires direct access to the Holy Siege controller.
+            </p>
+            <p style="margin: 10px 0; color: #1e3a8a;">
+                <strong>Controller Status Endpoint:</strong><br>
+                <code style="display: block; background: #0f172a; color: #10b981; padding: 10px; border-radius: 5px; margin: 5px 0;">
+                    curl http://localhost:3000/health
+                </code>
+            </p>
+            <p style="margin: 10px 0; color: #1e3a8a;">
+                Jobs are stored in Redis and managed by the bee-queue system.
+            </p>
+        </div>
+    `;
+
+    document.getElementById('siege-status-result').innerHTML = html;
+}
+
+async function viewReport() {
+    const reportId = document.getElementById('siege-report-id').value;
+    if (!reportId) {
+        alert('Please enter a report ID or IPFS CID');
+        return;
+    }
+
+    showLoading('siege-report-result');
+
+    let html = `
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 8px;">
+            <h3>Report Viewer</h3>
+            <p>To view Holy Siege reconnaissance reports:</p>
+
+            <h4>If IPFS CID:</h4>
+            <code style="display: block; background: #0f172a; color: #10b981; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                https://ipfs.io/ipfs/${reportId}
+            </code>
+            <a href="https://ipfs.io/ipfs/${reportId}" target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 15px; background: #7c3aed; color: white; text-decoration: none; border-radius: 5px;">
+                🌐 View on IPFS
+            </a>
+
+            <h4 style="margin-top: 20px;">If Local Report:</h4>
+            <p>Reports are stored in <code>/tmp/report-{jobId}.json</code> on the worker machine.</p>
+
+            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                <h4>Report Structure:</h4>
+                <pre style="background: #0f172a; color: #10b981; padding: 15px; border-radius: 5px; overflow-x: auto;">{
+  "jobId": "12345",
+  "target": "192.168.1.10",
+  "ts": "2025-10-31T12:00:00.000Z",
+  "results": {
+    "nmap": { /* service detection */ },
+    "http": { /* headers */ },
+    "smtp": { /* banner */ }
+  },
+  "ipfs": "QmXXXX...",
+  "sign": "signed"
+}</pre>
+            </div>
+
+            <p style="margin-top: 15px; color: #666;">
+                ✝️ All reports are GPG-signed for authenticity and integrity verification.
+            </p>
+        </div>
+    `;
+
+    document.getElementById('siege-report-result').innerHTML = html;
+}
+
 // Initialize
 console.log('Cyber Lab Interface loaded successfully!');

@@ -6,6 +6,7 @@ import { storage } from "./services/storage";
 import { attackLogService } from "./services/attackLogService";
 import { guardianAngel } from "./services/guardianAngelService";
 import { crypterService } from "./services/crypterService";
+import { spoofingLab } from "./services/spoofingLabService";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -406,6 +407,116 @@ app.post("/api/crypter/generate-stub", async (req: Request, res: Response) => {
     res.json({ stub });
   } catch (error) {
     res.status(500).json({ error: "Failed to generate stub" });
+  }
+});
+
+// ===== SPOOFING LAB ENDPOINTS =====
+
+app.get("/api/spoofing/templates", async (req: Request, res: Response) => {
+  try {
+    const filters: any = {};
+    if (req.query.category) filters.category = req.query.category;
+    if (req.query.difficulty) filters.difficulty = req.query.difficulty;
+
+    const templates = await spoofingLab.getTemplates(filters);
+    res.json(templates);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get templates" });
+  }
+});
+
+app.get("/api/spoofing/templates/:id", async (req: Request, res: Response) => {
+  try {
+    const template = await spoofingLab.getTemplate(req.params.id);
+    if (!template) {
+      return res.status(404).json({ error: "Template not found" });
+    }
+    res.json(template);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get template" });
+  }
+});
+
+app.post("/api/spoofing/templates", async (req: Request, res: Response) => {
+  try {
+    const template = await spoofingLab.createTemplate(req.body);
+    res.json(template);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create template" });
+  }
+});
+
+app.post("/api/spoofing/customize/:templateId", async (req: Request, res: Response) => {
+  try {
+    const { templateId } = req.params;
+    const { customizations } = req.body;
+    const customized = await spoofingLab.customizeTemplate(templateId, customizations);
+    res.json({ customized });
+  } catch (error: any) {
+    res.status(500).json({ error: "Failed to customize template", detail: error.message });
+  }
+});
+
+app.get("/api/spoofing/campaigns", async (req: Request, res: Response) => {
+  try {
+    const filters: any = {};
+    if (req.query.status) filters.status = req.query.status;
+    if (req.query.createdBy) filters.createdBy = req.query.createdBy;
+
+    const campaigns = await spoofingLab.getCampaigns(filters);
+    res.json(campaigns);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get campaigns" });
+  }
+});
+
+app.get("/api/spoofing/campaigns/:id", async (req: Request, res: Response) => {
+  try {
+    const campaign = await spoofingLab.getCampaign(req.params.id);
+    if (!campaign) {
+      return res.status(404).json({ error: "Campaign not found" });
+    }
+    res.json(campaign);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get campaign" });
+  }
+});
+
+app.post("/api/spoofing/campaigns", async (req: Request, res: Response) => {
+  try {
+    const campaign = await spoofingLab.createCampaign(req.body);
+    res.json(campaign);
+  } catch (error: any) {
+    res.status(500).json({ error: "Failed to create campaign", detail: error.message });
+  }
+});
+
+app.post("/api/spoofing/campaigns/:id/stats", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { stat } = req.body;
+    await spoofingLab.updateCampaignStats(id, stat);
+    res.json({ success: true });
+  } catch (error: any) {
+    res.status(500).json({ error: "Failed to update campaign stats", detail: error.message });
+  }
+});
+
+app.post("/api/spoofing/analyze", async (req: Request, res: Response) => {
+  try {
+    const analysis = await spoofingLab.analyzeSpoofing(req.body);
+    res.json(analysis);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to analyze spoofing" });
+  }
+});
+
+app.get("/api/spoofing/campaigns/:id/report", async (req: Request, res: Response) => {
+  try {
+    const report = await spoofingLab.generateTrainingReport(req.params.id);
+    res.json(report);
+  } catch (error: any) {
+    res.status(500).json({ error: "Failed to generate report", detail: error.message });
   }
 });
 
