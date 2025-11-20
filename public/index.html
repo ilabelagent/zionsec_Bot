@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Lab - Security & Banking Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Cyber Lab Interface</h1>
+            <p class="subtitle">Security Analysis & Banking Analytics Platform</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('cyberlab')">🛡️ CyberLab</button>
+            <button class="tab-btn" onclick="switchTab('banking')">🏦 Banking</button>
+            <button class="tab-btn" onclick="switchTab('spoofing')">🎣 Spoofing Lab</button>
+            <button class="tab-btn" onclick="switchTab('holysiege')">⚔️ Holy Siege</button>
+            <button class="tab-btn" onclick="switchTab('guardian')">👼 Guardian Angel</button>
+            <button class="tab-btn" onclick="switchTab('attacks')">🚨 Attack Monitor</button>
+            <button class="tab-btn" onclick="switchTab('crypter')">🔐 Crypter/FUD</button>
+            <button class="tab-btn" onclick="switchTab('learning')">🧠 Bot Learning</button>
+        </div>
+
+        <!-- CYBERLAB TAB -->
+        <div id="cyberlab-tab" class="tab-content active">
+            <div class="grid">
+                <!-- Contract Scanner -->
+                <div class="card">
+                    <h2>📋 Smart Contract Scanner</h2>
+                    <div class="form-group">
+                        <input type="text" id="contract-address" placeholder="Contract Address (0x...)">
+                        <input type="text" id="contract-network" placeholder="Network (e.g., ethereum)">
+                        <button onclick="scanContract()">Scan Contract</button>
+                    </div>
+                    <div id="contract-result" class="result"></div>
+                </div>
+
+                <!-- Penetration Test -->
+                <div class="card">
+                    <h2>🔍 Penetration Testing</h2>
+                    <div class="form-group">
+                        <input type="text" id="pentest-url" placeholder="Target URL">
+                        <button onclick="penetrationTest()">Run Pen Test</button>
+                    </div>
+                    <div id="pentest-result" class="result"></div>
+                </div>
+
+                <!-- Attack Simulation -->
+                <div class="card">
+                    <h2>⚔️ Attack Simulation</h2>
+                    <div class="form-group">
+                        <input type="text" id="attack-type" placeholder="Attack Type (e.g., DDoS, Phishing)">
+                        <input type="text" id="attack-target" placeholder="Target">
+                        <button onclick="simulateAttack()">Simulate Attack</button>
+                    </div>
+                    <div id="attack-result" class="result"></div>
+                </div>
+
+                <!-- Wallet Audit -->
+                <div class="card">
+                    <h2>💼 Wallet Security Audit</h2>
+                    <div class="form-group">
+                        <input type="text" id="wallet-address" placeholder="Wallet Address (0x...)">
+                        <button onclick="auditWallet()">Audit Wallet</button>
+                    </div>
+                    <div id="wallet-result" class="result"></div>
+                </div>
+
+                <!-- Phishing Detection -->
+                <div class="card">
+                    <h2>🎣 Phishing Detection</h2>
+                    <div class="form-group">
+                        <input type="text" id="phishing-url" placeholder="URL to check">
+                        <button onclick="detectPhishing()">Check URL</button>
+                    </div>
+                    <div id="phishing-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANKING TAB -->
+        <div id="banking-tab" class="tab-content">
+            <div class="grid">
+                <!-- Link Account -->
+                <div class="card">
+                    <h2>🔗 Link Bank Account</h2>
+                    <div class="form-group">
+                        <input type="text" id="user-id" placeholder="User ID">
+                        <input type="text" id="plaid-token" placeholder="Plaid Token">
+                        <button onclick="linkAccount()">Link Account</button>
+                    </div>
+                    <div id="link-result" class="result"></div>
+                </div>
+
+                <!-- Check Balance -->
+                <div class="card">
+                    <h2>💰 Account Balance</h2>
+                    <div class="form-group">
+                        <input type="text" id="balance-account" placeholder="Account ID">
+                        <button onclick="getBalance()">Get Balance</button>
+                    </div>
+                    <div id="balance-result" class="result"></div>
+                </div>
+
+                <!-- ACH Transfer -->
+                <div class="card">
+                    <h2>💸 ACH Transfer</h2>
+                    <div class="form-group">
+                        <input type="text" id="ach-account" placeholder="Account ID">
+                        <input type="number" id="ach-amount" placeholder="Amount">
+                        <select id="ach-direction">
+                            <option value="deposit">Deposit</option>
+                            <option value="withdrawal">Withdrawal</option>
+                        </select>
+                        <button onclick="initiateACH()">Initiate ACH</button>
+                    </div>
+                    <div id="ach-result" class="result"></div>
+                </div>
+
+                <!-- Transactions -->
+                <div class="card">
+                    <h2>📊 Transactions</h2>
+                    <div class="form-group">
+                        <input type="text" id="trans-account" placeholder="Account ID">
+                        <input type="number" id="trans-days" placeholder="Days (default: 30)" value="30">
+                        <button onclick="getTransactions()">Get Transactions</button>
+                    </div>
+                    <div id="trans-result" class="result"></div>
+                </div>
+
+                <!-- Categorize Transactions -->
+                <div class="card">
+                    <h2>🏷️ Transaction Categories</h2>
+                    <div class="form-group">
+                        <input type="text" id="cat-account" placeholder="Account ID">
+                        <button onclick="categorizeTransactions()">Categorize</button>
+                    </div>
+                    <div id="cat-result" class="result"></div>
+                </div>
+
+                <!-- Credit Score -->
+                <div class="card">
+                    <h2>📈 Credit Score</h2>
+                    <div class="form-group">
+                        <input type="text" id="credit-user" placeholder="User ID">
+                        <button onclick="getCreditScore()">Get Score</button>
+                    </div>
+                    <div id="credit-result" class="result"></div>
+                </div>
+
+                <!-- Loan Qualification -->
+                <div class="card">
+                    <h2>🏠 Loan Qualification</h2>
+                    <div class="form-group">
+                        <input type="text" id="loan-user" placeholder="User ID">
+                        <input type="number" id="loan-amount" placeholder="Loan Amount">
+                        <button onclick="analyzeLoan()">Analyze</button>
+                    </div>
+                    <div id="loan-result" class="result"></div>
+                </div>
+
+                <!-- Financial Health -->
+                <div class="card">
+                    <h2>💪 Financial Health</h2>
+                    <div class="form-group">
+                        <input type="text" id="health-user" placeholder="User ID">
+                        <button onclick="getFinancialHealth()">Calculate Health</button>
+                    </div>
+                    <div id="health-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUARDIAN ANGEL TAB -->
+        <div id="guardian-tab" class="tab-content">
+            <div class="grid">
+                <!-- Daily Briefing -->
+                <div class="card full-width">
+                    <h2>🌅 Daily Briefing</h2>
+                    <div class="form-group">
+                        <input type="text" id="briefing-user" placeholder="User ID" value="user123">
+                        <button onclick="getDailyBriefing()">Get Today's Briefing</button>
+                    </div>
+                    <div id="briefing-result" class="result"></div>
+                </div>
+
+                <!-- Health Tracking -->
+                <div class="card">
+                    <h2>❤️ Health Metrics</h2>
+                    <div class="form-group">
+                        <input type="text" id="health-user" placeholder="User ID" value="user123">
+                        <input type="number" id="heart-rate" placeholder="Heart Rate (bpm)">
+                        <input type="number" id="sleep-hours" placeholder="Sleep Hours">
+                        <input type="number" id="steps" placeholder="Steps">
+                        <input type="number" id="water-intake" placeholder="Water (ml)">
+                        <input type="number" id="stress-level" placeholder="Stress (1-10)">
+                        <button onclick="trackHealth()">Track Health</button>
+                    </div>
+                    <div id="health-track-result" class="result"></div>
+                </div>
+
+                <!-- Wellness Analysis -->
+                <div class="card">
+                    <h2>💪 Wellness Score</h2>
+                    <div class="form-group">
+                        <input type="text" id="wellness-user" placeholder="User ID" value="user123">
+                        <button onclick="analyzeWellness()">Analyze Wellness</button>
+                    </div>
+                    <div id="wellness-result" class="result"></div>
+                </div>
+
+                <!-- Schedule Management -->
+                <div class="card full-width">
+                    <h2>📅 Smart Schedule</h2>
+                    <div class="form-group">
+                        <input type="text" id="schedule-user" placeholder="User ID" value="user123">
+                        <button onclick="getSchedule()">View Schedule</button>
+                        <button onclick="showAddScheduleForm()">Add New Item</button>
+                    </div>
+                    <div id="add-schedule-form" style="display:none; margin-top: 15px;">
+                        <input type="text" id="schedule-title" placeholder="Title">
+                        <input type="datetime-local" id="schedule-start">
+                        <input type="datetime-local" id="schedule-end">
+                        <select id="schedule-priority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <select id="schedule-category">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="health">Health</option>
+                            <option value="social">Social</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <button onclick="addScheduleItem()">Add to Schedule</button>
+                    </div>
+                    <div id="schedule-result" class="result"></div>
+                </div>
+
+                <!-- Safety Check -->
+                <div class="card">
+                    <h2>🛡️ Safety Monitor</h2>
+                    <div class="form-group">
+                        <input type="text" id="safety-user" placeholder="User ID" value="user123">
+                        <button onclick="checkSafety()">Check Safety</button>
+                        <button onclick="sendSOS()" style="background: #ef4444;">🆘 SOS</button>
+                    </div>
+                    <div id="safety-result" class="result"></div>
+                </div>
+
+                <!-- Alerts -->
+                <div class="card">
+                    <h2>🔔 Active Alerts</h2>
+                    <div class="form-group">
+                        <select id="alert-type-filter">
+                            <option value="">All Types</option>
+                            <option value="health">Health</option>
+                            <option value="safety">Safety</option>
+                            <option value="wellness">Wellness</option>
+                            <option value="schedule">Schedule</option>
+                            <option value="reminder">Reminder</option>
+                        </select>
+                        <button onclick="getGuardianAlerts()">Load Alerts</button>
+                    </div>
+                    <div id="guardian-alerts-result" class="result"></div>
+                </div>
+
+                <!-- Health History -->
+                <div class="card full-width">
+                    <h2>📊 Health History</h2>
+                    <div class="form-group">
+                        <input type="number" id="history-days" placeholder="Days" value="7">
+                        <button onclick="getHealthHistory()">View History</button>
+                    </div>
+                    <div id="history-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATTACK MONITOR TAB -->
+        <div id="attacks-tab" class="tab-content">
+            <div class="grid">
+                <!-- Statistics Dashboard -->
+                <div class="card full-width">
+                    <h2>📊 Real-Time Attack Statistics</h2>
+                    <button onclick="loadAttackStats()">Refresh Stats</button>
+                    <div id="stats-result" class="result"></div>
+                </div>
+
+                <!-- Attack Logs -->
+                <div class="card full-width">
+                    <h2>🚨 Live Attack Logs</h2>
+                    <div class="form-group">
+                        <select id="attack-severity-filter">
+                            <option value="">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <select id="attack-status-filter">
+                            <option value="">All Status</option>
+                            <option value="detected">Detected</option>
+                            <option value="blocked">Blocked</option>
+                            <option value="mitigated">Mitigated</option>
+                            <option value="investigating">Investigating</option>
+                        </select>
+                        <button onclick="loadAttackLogs()">Load Attacks</button>
+                    </div>
+                    <div id="attack-logs-result" class="result"></div>
+                </div>
+
+                <!-- Vulnerability Reports -->
+                <div class="card full-width">
+                    <h2>🔍 Vulnerability Reports</h2>
+                    <div class="form-group">
+                        <select id="vuln-type-filter">
+                            <option value="">All Types</option>
+                            <option value="contract">Smart Contracts</option>
+                            <option value="wallet">Wallets</option>
+                            <option value="url">URLs</option>
+                            <option value="system">Systems</option>
+                        </select>
+                        <button onclick="loadVulnerabilities()">Load Reports</button>
+                    </div>
+                    <div id="vuln-result" class="result"></div>
+                </div>
+
+                <!-- Threat Intelligence -->
+                <div class="card full-width">
+                    <h2>🎯 Threat Intelligence</h2>
+                    <button onclick="loadThreats()">Load Threat Intel</button>
+                    <div id="threats-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRYPTER TAB -->
+        <div id="crypter-tab" class="tab-content">
+            <div class="grid">
+                <!-- Payload Encryption -->
+                <div class="card full-width">
+                    <h2>🔐 Payload Encryption (FUD Crypter)</h2>
+                    <p style="color: #f59e0b; margin-bottom: 15px;">⚠️ For authorized penetration testing only - Guided by the Holy Spirit</p>
+                    <div class="form-group">
+                        <textarea id="crypter-payload" placeholder="Enter payload/code/shellcode to encrypt" rows="6"></textarea>
+                        <select id="crypter-type">
+                            <option value="code">JavaScript Code</option>
+                            <option value="html">HTML</option>
+                            <option value="payload">Generic Payload</option>
+                            <option value="shellcode">Shellcode</option>
+                        </select>
+                        <select id="crypter-method">
+                            <option value="fud">FUD (Fully Undetectable)</option>
+                            <option value="polymorphic">Polymorphic</option>
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                            <option value="base64">Multi-Layer Base64</option>
+                        </select>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="crypter-junk" checked style="margin-right: 10px;">
+                            Add junk code for obfuscation
+                        </label>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="crypter-obfuscate" checked style="margin-right: 10px;">
+                            Obfuscate string literals
+                        </label>
+                        <button onclick="encryptPayload()">🔒 Encrypt Payload</button>
+                    </div>
+                    <div id="crypter-result" class="result"></div>
+                </div>
+
+                <!-- HTML Obfuscation -->
+                <div class="card full-width">
+                    <h2>🕸️ HTML/JavaScript Obfuscation</h2>
+                    <div class="form-group">
+                        <textarea id="html-input" placeholder="Enter HTML with <script> tags" rows="6"></textarea>
+                        <select id="html-method">
+                            <option value="fud">FUD Encryption</option>
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                        </select>
+                        <button onclick="obfuscateHTML()">🔐 Obfuscate HTML</button>
+                    </div>
+                    <div id="html-result" class="result"></div>
+                </div>
+
+                <!-- Payload Decryption -->
+                <div class="card full-width">
+                    <h2>🔓 Payload Decryption</h2>
+                    <div class="form-group">
+                        <textarea id="decrypt-payload" placeholder="Enter encrypted payload" rows="4"></textarea>
+                        <input type="text" id="decrypt-key" placeholder="Decryption Key">
+                        <select id="decrypt-method">
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                            <option value="base64">Base64</option>
+                        </select>
+                        <button onclick="decryptPayload()">🔑 Decrypt</button>
+                    </div>
+                    <div id="decrypt-result" class="result"></div>
+                </div>
+
+                <!-- Stub Generator -->
+                <div class="card full-width">
+                    <h2>📦 Crypter Stub Generator</h2>
+                    <p style="color: #10b981; margin-bottom: 10px;">Generate standalone loader for encrypted payloads</p>
+                    <div class="form-group">
+                        <textarea id="stub-encrypted" placeholder="Enter encrypted payload" rows="3"></textarea>
+                        <input type="text" id="stub-key" placeholder="Encryption Key">
+                        <select id="stub-method">
+                            <option value="aes256">AES-256</option>
+                            <option value="xor">XOR</option>
+                        </select>
+                        <button onclick="generateStub()">📦 Generate Stub</button>
+                    </div>
+                    <div id="stub-result" class="result"></div>
+                </div>
+
+                <!-- Detection Info -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>🛡️ Anti-Virus Detection Rates</h2>
+                    <div style="line-height: 1.8;">
+                        <p><strong>FUD (Fully Undetectable):</strong> <span style="color: #10b981;">0-15% detection</span> - Maximum obfuscation</p>
+                        <p><strong>Polymorphic:</strong> <span style="color: #10b981;">10-30% detection</span> - Changes signature</p>
+                        <p><strong>AES-256:</strong> <span style="color: #f59e0b;">20-40% detection</span> - Strong encryption</p>
+                        <p><strong>XOR:</strong> <span style="color: #ef4444;">30-50% detection</span> - Basic encryption</p>
+                        <p><strong>Base64:</strong> <span style="color: #ef4444;">40-60% detection</span> - Simple encoding</p>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>Note:</strong> All crypter operations are guided by the Holy Spirit for ethical use only.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEARNING TAB -->
+        <div id="learning-tab" class="tab-content">
+            <div class="grid">
+                <!-- Skills -->
+                <div class="card full-width">
+                    <h2>🎯 Bot Skills</h2>
+                    <div class="form-group">
+                        <select id="skills-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getSkills()">Load Skills</button>
+                    </div>
+                    <div id="skills-result" class="result"></div>
+                </div>
+
+                <!-- Executions -->
+                <div class="card full-width">
+                    <h2>📜 Execution History</h2>
+                    <div class="form-group">
+                        <select id="exec-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getExecutions()">Load Executions</button>
+                    </div>
+                    <div id="exec-result" class="result"></div>
+                </div>
+
+                <!-- Memories -->
+                <div class="card full-width">
+                    <h2>🧠 Bot Memories</h2>
+                    <div class="form-group">
+                        <select id="mem-bot">
+                            <option value="">All Bots</option>
+                            <option value="analytics_cyberlab">CyberLab Bot</option>
+                            <option value="analytics_banking">Banking Bot</option>
+                        </select>
+                        <button onclick="getMemories()">Load Memories</button>
+                    </div>
+                    <div id="mem-result" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPOOFING LAB TAB -->
+        <div id="spoofing-tab" class="tab-content">
+            <div class="grid">
+                <!-- Template Gallery -->
+                <div class="card full-width">
+                    <h2>🎣 Phishing Template Gallery</h2>
+                    <p style="color: #10b981; margin-bottom: 15px;">✝️ For authorized security awareness training only</p>
+                    <div class="form-group">
+                        <select id="template-category">
+                            <option value="">All Categories</option>
+                            <option value="email">📧 Email</option>
+                            <option value="sms">💬 SMS</option>
+                            <option value="webpage">🌐 Webpage</option>
+                            <option value="voice">📞 Voice</option>
+                            <option value="qr_code">🔳 QR Code</option>
+                        </select>
+                        <select id="template-difficulty">
+                            <option value="">All Difficulties</option>
+                            <option value="beginner">🟢 Beginner</option>
+                            <option value="intermediate">🟡 Intermediate</option>
+                            <option value="advanced">🟠 Advanced</option>
+                            <option value="expert">🔴 Expert</option>
+                        </select>
+                        <button onclick="loadTemplates()">📚 Load Templates</button>
+                    </div>
+                    <div id="template-gallery" class="result" style="max-height: 400px; overflow-y: auto;"></div>
+                </div>
+
+                <!-- Template Customization -->
+                <div class="card full-width">
+                    <h2>✏️ Customize Template</h2>
+                    <div class="form-group">
+                        <select id="customize-template-id">
+                            <option value="">Select a template first...</option>
+                        </select>
+                        <button onclick="showCustomizationForm()">📝 Show Customization Form</button>
+                    </div>
+                    <div id="customization-form" style="margin-top: 15px; display: none;">
+                        <div id="template-variables"></div>
+                        <button onclick="customizeTemplate()">🎨 Generate Customized Content</button>
+                    </div>
+                    <div id="customized-result" class="result"></div>
+                </div>
+
+                <!-- Campaign Management -->
+                <div class="card full-width">
+                    <h2>📊 Awareness Training Campaigns</h2>
+                    <div class="form-group">
+                        <button onclick="showCampaignForm()">➕ Create New Campaign</button>
+                        <button onclick="loadCampaigns()">📋 Load Campaigns</button>
+                    </div>
+                    <div id="campaign-form" style="margin-top: 15px; display: none;">
+                        <h3>New Campaign</h3>
+                        <input type="text" id="campaign-name" placeholder="Campaign Name">
+                        <select id="campaign-template">
+                            <option value="">Select Template...</option>
+                        </select>
+                        <input type="text" id="campaign-audience" placeholder="Target Audience (e.g., All Employees)">
+                        <select id="campaign-purpose">
+                            <option value="training">Training</option>
+                            <option value="awareness">Awareness</option>
+                            <option value="assessment">Assessment</option>
+                        </select>
+                        <input type="text" id="campaign-creator" placeholder="Created By">
+                        <button onclick="createCampaign()">🚀 Launch Campaign</button>
+                    </div>
+                    <div id="campaigns-list" class="result"></div>
+                </div>
+
+                <!-- Spoofing Analysis -->
+                <div class="card full-width">
+                    <h2>🔍 Spoofing Technique Analysis</h2>
+                    <div class="form-group">
+                        <input type="text" id="spoof-target" placeholder="Target (email, domain, number, etc.)">
+                        <select id="spoof-type">
+                            <option value="email">📧 Email Spoofing</option>
+                            <option value="domain">🌐 Domain Spoofing</option>
+                            <option value="caller_id">📞 Caller ID Spoofing</option>
+                            <option value="sms">💬 SMS Spoofing</option>
+                            <option value="ip">🖥️ IP Spoofing</option>
+                        </select>
+                        <input type="text" id="spoof-original" placeholder="Original Identity">
+                        <input type="text" id="spoof-spoofed" placeholder="Spoofed Identity">
+                        <input type="number" id="spoof-difficulty" placeholder="Detection Difficulty (0-100)" min="0" max="100">
+                        <button onclick="analyzeSpoofing()">🔎 Analyze</button>
+                    </div>
+                    <div id="spoofing-result" class="result"></div>
+                </div>
+
+                <!-- Training Report -->
+                <div class="card full-width">
+                    <h2>📈 Training Effectiveness Report</h2>
+                    <div class="form-group">
+                        <select id="report-campaign">
+                            <option value="">Select Campaign...</option>
+                        </select>
+                        <button onclick="generateReport()">📊 Generate Report</button>
+                    </div>
+                    <div id="report-result" class="result"></div>
+                </div>
+
+                <!-- Educational Resources -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>🎓 Phishing Awareness Education</h2>
+                    <div style="line-height: 1.8;">
+                        <h3 style="color: #60a5fa; margin-top: 0;">Common Red Flags:</h3>
+                        <ul style="color: #e5e7eb;">
+                            <li>🚩 Urgent or threatening language</li>
+                            <li>🚩 Unexpected requests for sensitive information</li>
+                            <li>🚩 Suspicious sender email addresses</li>
+                            <li>🚩 Misspelled domains or URLs</li>
+                            <li>🚩 Generic greetings (e.g., "Dear Customer")</li>
+                            <li>🚩 Poor grammar and spelling errors</li>
+                            <li>🚩 Requests to bypass normal procedures</li>
+                        </ul>
+                        <h3 style="color: #10b981;">Best Practices:</h3>
+                        <ul style="color: #e5e7eb;">
+                            <li>✅ Verify sender through secondary channel</li>
+                            <li>✅ Hover over links to check actual URL</li>
+                            <li>✅ Check SSL certificates on websites</li>
+                            <li>✅ Never enter credentials from email links</li>
+                            <li>✅ Report suspicious emails to IT security</li>
+                        </ul>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>Guided by the Holy Spirit for ethical security education</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOLY SIEGE TAB -->
+        <div id="holysiege-tab" class="tab-content">
+            <div class="grid">
+                <!-- Holy Siege Overview -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);">
+                    <h2>⚔️ Holy Siege - GPG-Signed Reconnaissance</h2>
+                    <p style="font-size: 14px; line-height: 1.6; margin-bottom: 0;">
+                        Holy Siege is a safe, auditable, and authorized reconnaissance toolkit for security assessments.
+                        All jobs require GPG-signed manifests and admin authorization. Non-destructive checks only.
+                    </p>
+                </div>
+
+                <!-- Job Submission -->
+                <div class="card full-width">
+                    <h2>📝 Submit Reconnaissance Job</h2>
+                    <p style="color: #f59e0b; margin-bottom: 10px;">⚠️ Requires: GPG key, admin authorization, written permission</p>
+                    <div class="form-group">
+                        <input type="text" id="siege-target" placeholder="Target IP or Domain (e.g., 192.168.1.10)">
+                        <input type="text" id="siege-submitter" placeholder="Your GPG Key ID">
+                        <textarea id="siege-authorization" placeholder="Authorization Document (attach written permission)" rows="3"></textarea>
+                        <select id="siege-scan-type">
+                            <option value="quick-scan">Quick Scan (nmap service detection)</option>
+                            <option value="full-scan">Full Scan (nmap + HTTP + SMTP)</option>
+                            <option value="http-only">HTTP Headers Only</option>
+                            <option value="smtp-only">SMTP Banner Only</option>
+                        </select>
+                        <label style="display: flex; align-items: center; margin: 10px 0;">
+                            <input type="checkbox" id="siege-ipfs" checked style="margin-right: 10px;">
+                            Upload report to IPFS
+                        </label>
+                        <button onclick="submitHolySiegeJob()">⚔️ Submit Job (Requires GPG Signing)</button>
+                    </div>
+                    <div id="siege-submit-result" class="result"></div>
+                </div>
+
+                <!-- Job Status Monitor -->
+                <div class="card full-width">
+                    <h2>📊 Job Status Monitor</h2>
+                    <div class="form-group">
+                        <input type="text" id="siege-job-id" placeholder="Job ID">
+                        <button onclick="checkJobStatus()">🔍 Check Status</button>
+                        <button onclick="listAllJobs()">📋 List All Jobs</button>
+                    </div>
+                    <div id="siege-status-result" class="result"></div>
+                </div>
+
+                <!-- Reconnaissance Results -->
+                <div class="card full-width">
+                    <h2>📄 Reconnaissance Report Viewer</h2>
+                    <div class="form-group">
+                        <input type="text" id="siege-report-id" placeholder="Report ID or IPFS CID">
+                        <button onclick="viewReport()">📖 View Report</button>
+                    </div>
+                    <div id="siege-report-result" class="result" style="max-height: 500px; overflow-y: auto;"></div>
+                </div>
+
+                <!-- Docker Deployment -->
+                <div class="card full-width">
+                    <h2>🐳 Docker Deployment Commands</h2>
+                    <div style="background: #0f172a; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; color: #10b981;">
+                        <p style="margin: 5px 0;"># Start Holy Siege infrastructure</p>
+                        <p style="margin: 5px 0; color: #60a5fa;">docker compose -f docker/docker-compose.yml up --build</p>
+                        <br>
+                        <p style="margin: 5px 0;"># Submit a job (requires GPG key)</p>
+                        <p style="margin: 5px 0; color: #60a5fa;">node launcher/run_job.js quick-scan 192.168.1.10</p>
+                        <br>
+                        <p style="margin: 5px 0;"># Environment variables needed:</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">ADMIN_KEYS=&lt;comma-separated-gpg-key-ids&gt;</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">REDIS_URL=redis://127.0.0.1:6379</p>
+                        <p style="margin: 5px 0; color: #f59e0b;">IPFS_API=https://ipfs.io/api/v0/add</p>
+                    </div>
+                </div>
+
+                <!-- Scan Types Reference -->
+                <div class="card full-width">
+                    <h2>🔧 Non-Destructive Scan Types</h2>
+                    <div style="line-height: 1.8;">
+                        <p><strong style="color: #10b981;">nmap Service Discovery:</strong> Identifies open ports and service versions (read-only)</p>
+                        <p><strong style="color: #60a5fa;">HTTP Headers:</strong> Retrieves web server headers for fingerprinting</p>
+                        <p><strong style="color: #f59e0b;">SMTP Banner:</strong> Checks email server identification banner</p>
+                        <p><strong style="color: #8b5cf6;">Port Scanning:</strong> Discovers available network services</p>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #ef4444;"><strong>⚠️ NEVER INCLUDED:</strong></p>
+                        <ul style="color: #f87171; margin-left: 20px;">
+                            <li>❌ Exploitation or vulnerability execution</li>
+                            <li>❌ Credential attacks or brute forcing</li>
+                            <li>❌ MITM or traffic interception</li>
+                            <li>❌ Stealth or evasion techniques</li>
+                            <li>❌ Destructive or DoS operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ethical Guidelines -->
+                <div class="card full-width" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                    <h2>⚖️ Ethical & Legal Guidelines</h2>
+                    <div style="line-height: 1.8; color: #e5e7eb;">
+                        <h3 style="color: #10b981;">✅ Authorized Use:</h3>
+                        <ul>
+                            <li>Systems you own or have explicit written permission to test</li>
+                            <li>Internal security audits with management approval</li>
+                            <li>Red team exercises with signed engagement letters</li>
+                            <li>Educational labs and authorized CTF environments</li>
+                        </ul>
+                        <h3 style="color: #ef4444;">❌ Prohibited Use:</h3>
+                        <ul>
+                            <li>Unauthorized network scanning or reconnaissance</li>
+                            <li>Scanning systems without written authorization</li>
+                            <li>Any illegal or malicious activity</li>
+                            <li>Violation of organizational policies or laws</li>
+                        </ul>
+                        <hr style="margin: 15px 0; border-color: #374151;">
+                        <p style="color: #60a5fa;">✝️ <strong>All operations guided by Divine wisdom - Authorized use only</strong></p>
+                        <p style="font-size: 12px; color: #94a3b8;">Keep written authorization documents. GPG signatures provide audit trail.</p>
+                    </div>
+                </div>
+
+                <!-- IPFS Integration -->
+                <div class="card full-width">
+                    <h2>🌐 IPFS Report Storage</h2>
+                    <p style="line-height: 1.6;">
+                        Reconnaissance reports are signed with GPG and uploaded to IPFS for immutable,
+                        distributed storage. Reports can be retrieved using their IPFS CID (Content Identifier).
+                    </p>
+                    <div style="background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                        <p style="color: #10b981; margin: 5px 0;">Example IPFS Gateway Access:</p>
+                        <p style="color: #60a5fa; margin: 5px 0; font-family: monospace; font-size: 12px;">
+                            https://ipfs.io/ipfs/&lt;CID&gt;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

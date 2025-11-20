@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+  controller:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.controller
+    environment:
+      - ADMIN_KEYS=admin@example.com
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    ports:
+      - "3000:3000"
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.worker
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis

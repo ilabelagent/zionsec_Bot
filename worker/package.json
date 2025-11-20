@@ -1,0 +1,9 @@
+{
+  "name": "holy-siege-worker",
+  "version": "0.1.0",
+  "main": "worker/main.js",
+  "dependencies": {
+    "bee-queue": "^1.0.0",
+    "node-fetch": "^3.0.0"
+  }
+}

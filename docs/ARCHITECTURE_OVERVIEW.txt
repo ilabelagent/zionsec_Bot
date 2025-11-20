@@ -1,0 +1,4 @@
+Controller -> verifies GPG-signed manifests -> enqueues jobs in Redis
+Worker(s) -> pull jobs -> run non-destructive checks -> sign & upload reports to IPFS
+Launcher -> creates & signs manifest -> posts to controller
+Ansible -> hardening playbooks applied only with multi-admin sign-off & canary

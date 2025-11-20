@@ -1,0 +1,24 @@
+# Bun configuration for ZionSec Bot
+
+[install]
+# Use the same package manager behavior as npm
+peer = true
+dev = true
+
+[install.lockfile]
+# Generate a bun.lockb file
+save = true
+
+[run]
+# Enable hot reload for development
+hot = true
+
+[test]
+# Test configuration
+coverage = true
+
+# Set environment for AWS deployment testing
+[env]
+NODE_ENV = "production"
+AWS_REGION = "us-east-1"
+AWS_LAMBDA_FUNCTION_NAME = "zionsec-bot"

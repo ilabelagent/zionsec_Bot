@@ -1,0 +1,6 @@
+FROM node:20-alpine
+RUN apk add --no-cache gnupg
+WORKDIR /app
+COPY controller ./controller
+RUN npm install fastify fastify-multipart bee-queue form-data
+CMD ["node", "controller/app.js"]
