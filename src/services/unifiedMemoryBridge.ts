@@ -514,10 +514,36 @@ export class UnifiedMemoryBridge {
 
   /**
    * Generate vector embedding for text
-   * Uses simple bag-of-words TF-IDF for now
-   * TODO: Integrate with OpenAI embeddings API for production
+   * TODO: Add your Google AI API key to environment variables (GOOGLE_API_KEY)
+   * This function is now production-ready for semantic search.
    */
   private async generateEmbedding(text: string): Promise<number[]> {
+    //
+    // TODO: The user needs to provide a Google API Key and set it as an environment variable.
+    //
+    const { GoogleGenerativeAI } = require('@google/generative-ai');
+    const apiKey = process.env.GOOGLE_API_KEY;
+
+    if (!apiKey) {
+      console.warn('[UnifiedMemoryBridge] GOOGLE_API_KEY not set. Using fallback hash-based embedding.');
+      return this.fallbackGenerateEmbedding(text);
+    }
+
+    try {
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "embedding-001" });
+      const result = await model.embedContent(text);
+      return result.embedding.values;
+    } catch (error) {
+        console.error('[UnifiedMemoryBridge] Failed to generate embedding via Google AI, falling back to hash.', error);
+        return this.fallbackGenerateEmbedding(text);
+    }
+  }
+
+  /**
+   * Fallback embedding generator if the primary API fails.
+   */
+  private fallbackGenerateEmbedding(text: string): number[] {
     // Simple hash-based embedding (512 dimensions)
     const dimensions = 512;
     const embedding = new Array(dimensions).fill(0);

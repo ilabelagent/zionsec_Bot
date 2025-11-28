@@ -5,10 +5,10 @@ services:
     restart: unless-stopped
     ports:
       - "6379:6379"
-  controller:
+  godbrain:
     build:
       context: ..
-      dockerfile: docker/Dockerfile.controller
+      dockerfile: docker/Dockerfile.godbrain
     environment:
       - ADMIN_KEYS=admin@example.com
       - REDIS_URL=redis://redis:6379
@@ -16,11 +16,3 @@ services:
       - redis
     ports:
       - "3000:3000"
-  worker:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.worker
-    environment:
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis

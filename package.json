@@ -46,17 +46,17 @@
     }
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "electron": "^38.3.0",
-    "electron-store": "^8.1.0",
-    "express": "^4.19.2",
-    "helmet": "^7.1.0",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "node-pty": "^1.0.0",
-    "ws": "^8.16.0"
+    "@chainsafe/libp2p-gossipsub": "^8.0.0",
+    "fastify": "^4.24.3",
+    "fastify-multipart": "^5.4.0",
+    "bee-queue": "^1.7.1",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.6"
   },
   "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/glob": "^8.1.0",
+    "@types/node-fetch": "^2.6.13",
     "electron-builder": "^24.6.4"
   },
   "keywords": [

@@ -1,6 +1,0 @@
-FROM node:20-alpine
-RUN apk add --no-cache nmap gnupg
-WORKDIR /app
-COPY worker ./worker
-RUN npm install bee-queue node-fetch
-CMD ["node", "worker/main.js"]

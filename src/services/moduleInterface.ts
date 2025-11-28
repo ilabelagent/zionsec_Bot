@@ -177,7 +177,17 @@ export interface ModuleInterface {
  * All services should extend this class to inherit standard behaviors.
  */
 export abstract class BaseModule implements ModuleInterface {
-  abstract readonly metadata: ModuleMetadata;
+  public readonly metadata: ModuleMetadata = {
+      name: 'UnnamedModule',
+      version: '0.0.0',
+      description: '',
+      category: '',
+      author: '',
+      license: '',
+      kingdomAligned: false,
+      createdAt: new Date(),
+      lastUpdated: new Date()
+  };
   abstract readonly capabilities: ModuleCapabilities;
 
   public configuration: ModuleConfiguration = {
@@ -400,7 +410,7 @@ export abstract class BaseModule implements ModuleInterface {
     return 'low';
   }
 
-  private async executeWithTimeout<T>(
+  protected async executeWithTimeout<T>(
     fn: () => Promise<T>,
     timeoutMs: number
   ): Promise<T> {
